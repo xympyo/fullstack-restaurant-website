@@ -7,6 +7,9 @@ Route::get('/', function () {
 });
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"]);
+Route::get("/dashboard/list", function () {
+    return view("listorder");
+});
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
