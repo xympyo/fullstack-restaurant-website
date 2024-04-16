@@ -29,4 +29,10 @@ class Menu extends Model
         "created_at",
         "deleted_at"
     ];
+
+    // many to one from menu to order
+    public function order()
+    {
+        return $this->belongsTo("App\Models\Order", "id", "food_id");
+    }
 }

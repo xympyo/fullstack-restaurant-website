@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('order_status', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            // $table->integer("order_id")->nullable();
+            $table->foreignId("order_id")->nullable()->index("fk_order_to_order_status");
+            $table->string("order_status")->nullable();
+            $table->softDeletes();
         });
     }
 

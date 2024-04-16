@@ -30,4 +30,22 @@ class OrderHistory extends Model
         "created_at",
         "deleted_at"
     ];
+
+    // many to one from order_history to customer
+    public function customer()
+    {
+        return $this->belongsTo("App\Models\Customer", "customer_id", "id");
+    }
+
+    // one to one from order_history to order
+    public function order()
+    {
+        return $this->belongsTo("App\Models\Order", "order_id", "id");
+    }
+
+    // one to one from order_history to experience
+    public function experience()
+    {
+        return $this->belongsTo("App\Models\Experience", "experience_id", "id");
+    }
 }

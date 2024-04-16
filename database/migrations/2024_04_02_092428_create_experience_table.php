@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('experience', function (Blueprint $table) {
             $table->id();
+            // $table->integer("experience_id")->nullable();
+            $table->foreignId("experience_id")->nullable()->index("fk_order_to_experience");
+            $table->double("rating")->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

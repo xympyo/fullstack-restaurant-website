@@ -20,10 +20,16 @@ class CustomerData extends Model
     ];
 
     protected $fillable = [
-        "name",
-        "phone_number",
+        "customer_id",
+        "customer_name",
+        "customer_phone",
         "updated_at",
         "created_at",
         "deleted_at"
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo("App\Models\Customer", "customer_id", "id");
+    }
 }

@@ -21,9 +21,15 @@ class OrderStatus extends Model
 
     protected $fillable = [
         "order_id",
-        "status",
+        "order_status",
         "updated_at",
         "created_at",
         "deleted_at"
     ];
+
+    // one to one from order_status to order
+    public function order()
+    {
+        return $this->belongsTo("App\Models\Order", "id", "status_id");
+    }
 }

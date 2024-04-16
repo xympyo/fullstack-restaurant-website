@@ -25,4 +25,16 @@ class Experience extends Model
         "created_at",
         "deleted_at"
     ];
+
+    // one to one from experience to order_history
+    public function order_history()
+    {
+        return $this->belongsTo("App\Models\OrderHistory", "id", "experience_id");
+    }
+
+    // one to one from experience to order
+    public function order()
+    {
+        return $this->belongsTo("App\Models\Order", "experience_id", "id");
+    }
 }

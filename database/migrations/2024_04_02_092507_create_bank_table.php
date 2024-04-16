@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('bank', function (Blueprint $table) {
             $table->id();
+            $table->string("bank_name")->nullable();
+            $table->integer("bank_number")->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -26,4 +26,22 @@ class Customer extends Model
         "created_at",
         "deleted_at"
     ];
+
+    // one to many from customer to order
+    public function order()
+    {
+        return $this->hasMany("App\Models\Order", "customer_id");
+    }
+
+    // one to many from customer to order_history
+    public function order_history()
+    {
+        return $this->hasMany("App\Models\OrderHistory", "customer_id");
+    }
+
+    // one to one from customer to customer_data
+    public function customer_data()
+    {
+        return $this->belongsTo("App\Models\CustomerData", "id", "customer_id");
+    }
 }

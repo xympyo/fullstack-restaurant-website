@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('customer_data', function (Blueprint $table) {
             $table->id();
+            // $table->integer("customer_id");
+            $table->foreignId("customer_id")->index("fk_customer_to_customer_data");
+            $table->string("customer_name");
+            $table->string("customer_phone");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

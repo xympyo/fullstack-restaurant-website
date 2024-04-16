@@ -20,8 +20,11 @@ class Order extends Model
     ];
 
     protected $fillable = [
-        "order_id",
-        "cust_name",
+        "food_id",
+        "customer_id",
+        "status_id",
+        "customer_name",
+        "customer_table",
         "cust_food_name",
         "cust_price",
         "cust_quantity",
@@ -30,4 +33,34 @@ class Order extends Model
         "created_at",
         "deleted_at"
     ];
+
+    // one to one from order to experience
+    public function experience()
+    {
+        return $this->belongsTo("App\Models\Experience", "id", "experience_id");
+    }
+
+    // one to one from order to order_status
+    public function order_status()
+    {
+        return $this->belongsTo("App\Models\Customer", "status_id", "id");
+    }
+
+    // one to one from order to order_history
+    public function order_history()
+    {
+        return $this->belongsTo("App\Models\OrderHistory", "status_id", "order_id");
+    }
+
+    // one to many from order to menu
+    public function menu()
+    {
+        return $this->hasMany("App\Models\Menu", "id");
+    }
+
+    // many to one from order to customer
+    public function customer()
+    {
+        return $this->belongsTo("App\Models\Customer", "customer_id", "id");
+    }
 }
