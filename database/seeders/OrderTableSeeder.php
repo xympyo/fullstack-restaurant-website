@@ -15,26 +15,56 @@ class OrderTableSeeder extends Seeder
     {
         $order = [
             [
-                "food_id" => 4,
+                "food_id" => 2,
                 "customer_id" => 4,
+                "status_id" => null,
+                "cust_name" => null,
+                "customer_table" => 1,
+                "cust_food_name" => null,
+                "cust_price" => null,
+                "cust_quantity" => 3,
+                "cust_total" => null,
+                "created_at" => date("Y-m-d h:i:s"),
+                "updated_at" => date("Y-m-d h:i:s")
+            ],
+            [
+                "food_id" => 3,
+                "customer_id" => 1,
                 "status_id" => null,
                 "cust_name" => null,
                 "customer_table" => 2,
                 "cust_food_name" => null,
                 "cust_price" => null,
-                "cust_quantity" => 3,
+                "cust_quantity" => 2,
                 "cust_total" => null,
+                "created_at" => date("Y-m-d h:i:s"),
+                "updated_at" => date("Y-m-d h:i:s")
             ],
             [
                 "food_id" => 1,
-                "customer_id" => 1,
+                "customer_id" => 2,
                 "status_id" => null,
                 "cust_name" => null,
-                "customer_table" => 3,
+                "customer_table" => 1,
                 "cust_food_name" => null,
                 "cust_price" => null,
                 "cust_quantity" => 2,
                 "cust_total" => null,
+                "created_at" => date("Y-m-d h:i:s"),
+                "updated_at" => date("Y-m-d h:i:s")
+            ],
+            [
+                "food_id" => 4,
+                "customer_id" => 3,
+                "status_id" => null,
+                "cust_name" => null,
+                "customer_table" => 4,
+                "cust_food_name" => null,
+                "cust_price" => null,
+                "cust_quantity" => 2,
+                "cust_total" => null,
+                "created_at" => date("Y-m-d h:i:s"),
+                "updated_at" => date("Y-m-d h:i:s")
             ]
         ];
         Order::insert($order);

@@ -14,19 +14,19 @@ class CustomerTableSeeder extends Seeder
     public function run(): void
     {
         $customer = [[
-            "customer_name" => "Adelia Zhafira Puspasari",
+            "customer_name" => "Asep Wijaya",
             "customer_phone" => "081310511234",
             "created_at" => date("Y:m:d h:i:s")
         ], [
-            "customer_name" => "Nailah Putri Septiani",
+            "customer_name" => "Edwing HD",
             "customer_phone" => "081234123445",
             "created_at" => date("Y:m:d h:i:s")
         ], [
-            "customer_name" => "Ngurah Jaya Deva",
+            "customer_name" => "Justin Timberlake",
             "customer_phone" => "082310412334",
             "created_at" => date("Y:m:d h:i:s")
         ], [
-            "customer_name" => "Ernest Teo",
+            "customer_name" => "Zhafira Adelia",
             "customer_phone" => "085939540112",
             "created_at" => date("Y:m:d h:i:s")
         ]];

@@ -11,15 +11,6 @@ class OrderDoneController extends Controller
 {
     public function orderDone()
     {
-        $numberDoneToday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = CURDATE()');
-        $numberDoneYesterday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
-        return view("dashboard", [
-            'numberDoneToday' => $numberDoneToday[0]->count,
-            'numberDoneYesterday' => $numberDoneYesterday[0]->count
-        ]);
-    }
-    public function getOrderQuantitiesPerDay()
-    {
         // Fetch all distinct dates from the orders table
         $distinctDates = DB::table('order')
             ->select(DB::raw('DATE(created_at) as date'))
@@ -28,6 +19,7 @@ class OrderDoneController extends Controller
 
         // Initialize an empty array to store the result
         $orderQuantitiesPerDay = [];
+        $orderMax = 0;
 
         // Iterate over distinct dates
         foreach ($distinctDates as $date) {
@@ -38,8 +30,36 @@ class OrderDoneController extends Controller
 
             // Store date and order count in the result array
             $orderQuantitiesPerDay[$date] = $orderCount;
+            // Sum orders
+            $orderMax += $orderCount;
         }
+        $orderTotal = count($orderQuantitiesPerDay);
+        $averageOrder = $orderMax / $orderTotal;
 
-        return $orderQuantitiesPerDay;
+        $numberDoneToday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = CURDATE()');
+        $numberDoneYesterday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
+        $moneyGainedToday = DB::select('SELECT cust_total FROM `order` WHERE DATE(created_at) = CURDATE()');
+
+        // foreach money gained today
+        $moneyTotalToday = 0;
+        foreach ($moneyGainedToday as $moneys) {
+            $moneyTotalToday += $moneys->cust_total;
+        }
+        $rupiah = number_format($moneyTotalToday, 0, ",", ".");
+
+        $averageToday = (($numberDoneToday[0]->count - $averageOrder) / $averageOrder) * 100;
+        $averageYesterday = (($numberDoneYesterday[0]->count - $averageOrder) / $averageOrder) * 100;
+
+        // return data
+        return view("dashboard", [
+            'numberDoneToday' => $numberDoneToday[0]->count,
+            'numberDoneYesterday' => $numberDoneYesterday[0]->count,
+            'averageToday' => $averageToday,
+            'averageYesterday' => $averageYesterday,
+            'moneyTotalToday' => $rupiah
+        ]);
+    }
+    public function getOrderQuantitiesPerDay()
+    {
     }
 }
