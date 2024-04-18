@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double("f_price")->nullable();
             $table->double("f_rating")->nullable();
             $table->longText("f_photo")->nullable();
+            $table->string("f_category")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class OrderTableSeeder extends Seeder
             [
                 "food_id" => 2,
                 "customer_id" => 1,
-                "status_id" => null,
+                "status_id" => 1,
                 "cust_name" => null,
                 "customer_table" => 1,
                 "cust_food_name" => null,
@@ -30,7 +30,7 @@ class OrderTableSeeder extends Seeder
             [
                 "food_id" => 3,
                 "customer_id" => 2,
-                "status_id" => null,
+                "status_id" => 2,
                 "cust_name" => null,
                 "customer_table" => 2,
                 "cust_food_name" => null,
@@ -43,7 +43,7 @@ class OrderTableSeeder extends Seeder
             [
                 "food_id" => 1,
                 "customer_id" => 3,
-                "status_id" => null,
+                "status_id" => 3,
                 "cust_name" => null,
                 "customer_table" => 1,
                 "cust_food_name" => null,
@@ -56,7 +56,7 @@ class OrderTableSeeder extends Seeder
             [
                 "food_id" => 4,
                 "customer_id" => 4,
-                "status_id" => null,
+                "status_id" => 4,
                 "cust_name" => null,
                 "customer_table" => 4,
                 "cust_food_name" => null,

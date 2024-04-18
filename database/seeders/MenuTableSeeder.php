@@ -19,6 +19,7 @@ class MenuTableSeeder extends Seeder
             "f_photo" => "",
             "f_rating" => null,
             "f_price" => "150000",
+            "f_category" => "Tea",
             "created_at" => date("Y-m-d h:i:s"),
         ], [
             "f_name" => "Pizza Margherita",
@@ -26,6 +27,7 @@ class MenuTableSeeder extends Seeder
             "f_photo" => "",
             "f_rating" => null,
             "f_price" => "120000",
+            "f_category" => "Coffee",
             "created_at" => date("Y-m-d h:i:s"),
         ], [
             "f_name" => "Hamburger",
@@ -33,6 +35,7 @@ class MenuTableSeeder extends Seeder
             "f_photo" => "",
             "f_rating" => null,
             "f_price" => "80000",
+            "f_category" => "Non",
             "created_at" => date("Y-m-d h:i:s"),
         ], [
             "f_name" => "Pad Thai",
@@ -40,6 +43,7 @@ class MenuTableSeeder extends Seeder
             "f_photo" => "",
             "f_rating" => null,
             "f_price" => "50000",
+            "f_category" => "Tea",
             "created_at" => date("Y-m-d h:i:s"),
         ]];
         Menu::insert($menu);

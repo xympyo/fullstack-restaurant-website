@@ -23,6 +23,7 @@ class OrderHistoryController extends Controller
         `order`
     JOIN 
         `customer` ON `order`.customer_id = `customer`.id
+        WHERE `order`.status_id = 4
     ");
         $custId = [];
         $custName = [];

@@ -25,6 +25,7 @@ class Menu extends Model
         "f_price",
         "f_rating",
         "f_photo",
+        "f_category",
         "updated_at",
         "created_at",
         "deleted_at"
