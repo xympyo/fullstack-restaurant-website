@@ -16,7 +16,7 @@ class OrderTableSeeder extends Seeder
         $order = [
             [
                 "food_id" => 2,
-                "customer_id" => 4,
+                "customer_id" => 1,
                 "status_id" => null,
                 "cust_name" => null,
                 "customer_table" => 1,
@@ -29,7 +29,7 @@ class OrderTableSeeder extends Seeder
             ],
             [
                 "food_id" => 3,
-                "customer_id" => 1,
+                "customer_id" => 2,
                 "status_id" => null,
                 "cust_name" => null,
                 "customer_table" => 2,
@@ -42,7 +42,7 @@ class OrderTableSeeder extends Seeder
             ],
             [
                 "food_id" => 1,
-                "customer_id" => 2,
+                "customer_id" => 3,
                 "status_id" => null,
                 "cust_name" => null,
                 "customer_table" => 1,
@@ -55,7 +55,7 @@ class OrderTableSeeder extends Seeder
             ],
             [
                 "food_id" => 4,
-                "customer_id" => 3,
+                "customer_id" => 4,
                 "status_id" => null,
                 "cust_name" => null,
                 "customer_table" => 4,

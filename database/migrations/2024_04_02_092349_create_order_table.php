@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double("cust_price")->nullable();
             $table->integer("cust_quantity")->nullable();
             $table->double("cust_total")->nullable();
+            $table->string("cust_status")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

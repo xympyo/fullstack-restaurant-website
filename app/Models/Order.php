@@ -29,6 +29,7 @@ class Order extends Model
         "cust_price",
         "cust_quantity",
         "cust_total",
+        "cust_status",
         "updated_at",
         "created_at",
         "deleted_at"

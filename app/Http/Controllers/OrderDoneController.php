@@ -59,7 +59,4 @@ class OrderDoneController extends Controller
             'moneyTotalToday' => $rupiah
         ]);
     }
-    public function getOrderQuantitiesPerDay()
-    {
-    }
 }
