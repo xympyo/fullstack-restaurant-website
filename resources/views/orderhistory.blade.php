@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    @include("Components.Dashboard.header")
+    @include("Components.OrderHistory.header")
     @include("Components.OrderHistory.navbar")
 </body>
 

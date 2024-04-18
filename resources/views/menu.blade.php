@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    @include("Components.Dashboard.header")
+    @include("Components.Menu.header")
     @include("Components.Menu.navbar")
 </body>
 
