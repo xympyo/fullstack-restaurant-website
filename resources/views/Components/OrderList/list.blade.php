@@ -4,6 +4,10 @@
     a {
         cursor: pointer;
     }
+
+    td {
+        font-size: .75rem;
+    }
 </style>
 
 <div class="container-fluid outline" style="padding: 1rem;">

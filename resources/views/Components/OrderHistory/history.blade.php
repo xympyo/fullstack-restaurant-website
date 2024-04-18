@@ -1,3 +1,9 @@
+<style>
+    td {
+        font-size: .75rem;
+    }
+</style>
+
 <div class="container-fluid outline" style="padding: 1rem;">
     <table style="width: 100%;">
         <thead>

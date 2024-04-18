@@ -13,4 +13,4 @@ Route::get("/dashboard/menu", [App\Http\Controllers\MenuController::class, "menu
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post("/test", [App\Http\Controllers\ControllerDummy::class, 'placeOrder'])->name("test");
+Route::get("/test", [App\Http\Controllers\ControllerDummy::class, 'placeOrder'])->name("test");
