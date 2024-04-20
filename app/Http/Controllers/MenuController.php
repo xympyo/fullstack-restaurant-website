@@ -9,12 +9,12 @@ class MenuController extends Controller
 {
     public function menu()
     {
-        $menu = DB::select("SELECT id, f_name, f_description, f_photo, f_price, DATE(created_at) as created_date FROM menu");
+        $menu = DB::select("SELECT id, f_name, f_description, f_category, f_price, DATE(created_at) as created_date FROM menu");
 
         $menuId = [];
         $menuName = [];
         $menuDescription = [];
-        $menuPhoto = [];
+        $menuCategory = [];
         $menuPrice = [];
         $menuDate = [];
 
@@ -22,7 +22,7 @@ class MenuController extends Controller
             $menuId[] = $menus->id;
             $menuName[] = $menus->f_name;
             $menuDescription[] = $menus->f_description;
-            $menuPhoto[] = $menus->f_photo;
+            $menuCategory[] = $menus->f_category;
             $menuPrice[] = $menus->f_price;
             $menuDate[] = $menus->created_date; // Use the extracted date column
         }
@@ -31,7 +31,7 @@ class MenuController extends Controller
             "menuId" => $menuId,
             "menuName" => $menuName,
             "menuDescription" => $menuDescription,
-            "menuPhoto" => $menuPhoto,
+            "menuCategory" => $menuCategory,
             "menuPrice" => $menuPrice,
             "menuDate" => $menuDate
         ]);
