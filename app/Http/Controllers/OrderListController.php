@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Order;
 
 class OrderListController extends Controller
 {
     public function orderList()
     {
         // Fetch data for today's orders, all orders, and pending orders
-        $customerDataToday = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id, cust_status FROM `order` WHERE DATE(created_at) = CURDATE()");
+        $customerDataToday = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id, cust_status FROM `order` WHERE DATE(created_at) = CURDATE() AND status_id != 4 AND status_id != 5");
         $customerDataAll = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id FROM `order`");
-        $customerDataPending = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 1");
-        $customerDataConfirmed = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 2");
-        $customerDataPreparing = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 3");
-        $customerDataCompleted = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 4");
-        $customerDataCancelled = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 5");
+        $customerDataPending = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 1 AND DATE(created_at) = CURDATE()");
+        $customerDataConfirmed = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 2 AND DATE(created_at) = CURDATE()");
+        $customerDataPreparing = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 3 AND DATE(created_at) = CURDATE()");
+        $customerDataCompleted = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 4 AND DATE(created_at) = CURDATE()");
+        $customerDataCancelled = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 5 AND DATE(created_at) = CURDATE()");
 
         // Initialize today arrays to hold data
         $custIdToday = [];
@@ -215,5 +216,32 @@ class OrderListController extends Controller
             "custTotalRupiahCancelled" => $custTotalRupiahCancelled,
             "custStatusCancelled" => $custStatusCancelled,
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        // Retrieve the array of IDs and list of status updates
+        $listIds = $request->input("index");
+        $listCategories = $request->input("listUpdate");
+
+        // Iterate through each pair of ID and status update
+        foreach ($listIds as $index => $listId) {
+            // Retrieve the corresponding status update for the current ID
+            $listCategory = $listCategories[$index];
+
+            if (!is_numeric($listCategory)) {
+                $selectId = DB::select("SELECT `id` FROM `order_status` WHERE `order_status` = '$listCategory'");
+                $selectedId = $selectId[0]->id;
+                // Update the database with the new status
+                $designatedDataGet = DB::update("UPDATE `order` SET `status_id` = '$selectedId' WHERE `id` = $listId");
+            } else {
+                $designatedDataGet = DB::update("UPDATE `order` SET `status_id` = $listCategory WHERE `id` = $listId");
+                $updateTheStatus = DB::update("UPDATE `order`
+                JOIN `order_status` ON `order`.status_id = `order_status`.id
+                SET `order`.cust_status = `order_status`.`order_status`
+                WHERE `order`.status_id = `order_status`.id");
+            }
+        }
+        return redirect()->route("dashboard.list");
     }
 }

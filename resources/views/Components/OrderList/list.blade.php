@@ -37,6 +37,7 @@
     </div>
     <!-- All Orders of Today -->
     <div id="data1">
+
     </div>
 </div>
 
@@ -48,7 +49,10 @@
 
     function populateTable1() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -71,11 +75,25 @@
                     <td>{{ $custTableToday[$index] }}</td>
                     <td>{{ $custCreatedAtToday[$index] }}</td>
                     <td>{{ $custTotalRupiahToday[$index] }}</td>
-                    <td>{{ $custStatusToday[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdToday[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusToday[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;
@@ -83,7 +101,10 @@
 
     function populateTable3() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -106,11 +127,25 @@
                     <td>{{ $custTableConfirmed[$index] }}</td>
                     <td>{{ $custCreatedAtConfirmed[$index] }}</td>
                     <td>{{ $custTotalRupiahConfirmed[$index] }}</td>
-                    <td>{{ $custStatusConfirmed[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdConfirmed[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusConfirmed[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;
@@ -118,7 +153,10 @@
 
     function populateTable4() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -141,11 +179,25 @@
                     <td>{{ $custTablePreparing[$index] }}</td>
                     <td>{{ $custCreatedAtPreparing[$index] }}</td>
                     <td>{{ $custTotalRupiahPreparing[$index] }}</td>
-                    <td>{{ $custStatusPreparing[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdPreparing[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusPreparing[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;
@@ -153,7 +205,10 @@
 
     function populateTable5() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -176,11 +231,25 @@
                     <td>{{ $custTableCompleted[$index] }}</td>
                     <td>{{ $custCreatedAtCompleted[$index] }}</td>
                     <td>{{ $custTotalRupiahCompleted[$index] }}</td>
-                    <td>{{ $custStatusCompleted[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdCompleted[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusCompleted[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;
@@ -188,7 +257,10 @@
 
     function populateTable6() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -211,11 +283,25 @@
                     <td>{{ $custTableCancelled[$index] }}</td>
                     <td>{{ $custCreatedAtCancelled[$index] }}</td>
                     <td>{{ $custTotalRupiahCancelled[$index] }}</td>
-                    <td>{{ $custStatusCancelled[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdCancelled[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusCancelled[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;
@@ -223,7 +309,10 @@
 
     function populateTable2() {
         // Your Blade template code
-        var tbodyContent = `<table style="width: 100%;">
+        var tbodyContent = `<form method="post" action="{{ route('dashboard.list.update') }}">
+        @csrf
+        @method('post')
+        <table style="width: 100%;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -246,11 +335,25 @@
                     <td>{{ $custTablePending[$index] }}</td>
                     <td>{{ $custCreatedAtPending[$index] }}</td>
                     <td>{{ $custTotalRupiahPending[$index] }}</td>
-                    <td>{{ $custStatusPending[$index] }}</td>
+                    <input type="hidden" name="index[]" value="{{ $custIdPending[$index] }}">
+                    <td>
+                        <select name="listUpdate[]" class="form-select form-select-sm">
+                            <option selected>{{ $custStatusPending[$index] }}</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Confirmed</option>
+                            <option value="3">Preparing</option>
+                            <option value="4" class="good-text">Completed</option>
+                            <option value="5" class="bad-text">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>`;
+        </table>
+        <div class="container-fill d-flex flex-row-reverse mt-3">
+            <button type="submit" class="btn btn-primary">Save Status</button>
+        </div>
+    </form>`;
 
         // Insert the tbodyContent into the table
         document.getElementById("data1").innerHTML = tbodyContent;

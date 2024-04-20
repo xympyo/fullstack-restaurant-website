@@ -9,7 +9,7 @@ class MenuController extends Controller
 {
     public function menu()
     {
-        $menu = DB::select("SELECT id, f_name, f_description, f_category, f_price, DATE(created_at) as created_date FROM menu");
+        $menu = DB::select("SELECT id, f_name, f_description, f_category, f_price, DATE(created_at) as created_date FROM menu WHERE deleted_at IS NULL");
 
         $menuId = [];
         $menuName = [];

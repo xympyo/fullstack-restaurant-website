@@ -34,7 +34,6 @@ class OrderHistoryController extends Controller
         $custDate = [];
         $custTotal = [];
 
-
         foreach ($customerDataCompleted as $customers) {
             $custId[] = $customers->id;
             $custName[] = $customers->cust_name;

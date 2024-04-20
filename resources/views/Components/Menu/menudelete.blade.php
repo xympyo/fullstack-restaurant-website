@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Menu | Edit</title>
+    <title>Dashboard | Menu | Delete</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-10">
-                <h2>Customize {{ $f_names }}</h2>
+                <h2>Delete {{ $f_names }}</h2>
             </div>
         </div>
     </div>
@@ -55,34 +55,15 @@
             </div>
             <div class="col-10">
                 <div class="container outline p-3">
-                    <form method="post" action="{{ route('dashboard.menu.edit.store') }}">
+                    <form class="d-flex justify-content-center flex-column" method="post" action="{{ route('dashboard.menu.delete.delete') }}">
                         @csrf
                         @method('post')
                         <div class="mt-3 mb-3">
                             <input type="hidden" name="foodId" value="{{ $f_id }}">
                         </div>
-                        <div class="mt-3 mb-3">
-                            <label for="foodName" class="form-label">Food Name</label>
-                            <input type="text" class="form-control" id="foodName" name="foodName" placeholder="{{ $f_names }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="foodDesc" class="form-label">Food Description</label>
-                            <input type="text" class="form-control" id="foodDesc" name="foodDesc" placeholder="{{ $f_desc }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="foodPrice" class="form-label">Food Price</label>
-                            <input type="number" class="form-control" id="foodPrice" name="foodPrice" placeholder="{{ $f_price }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="foodCategory" class="form-label">Choose Food Category</label>
-                            <select class="form-select" name="foodCategory" id="foodCategory">
-                                <option selected>{{ $f_category }}</option>
-                                <option value="Tea">Tea</option>
-                                <option value="Coffee">Coffee</option>
-                                <option value="Non">Non</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                        <h1 class="text-center">THIS ACTION CAN NOT BE REVERSED</h1>
+                        <h3 class="text-center mt-3">Are you certain you want to delete {{ $f_names }}</h3>
+                        <button type="submit" class="btn btn-danger m-3">Delete {{ $f_names }}</button>
                     </form>
                 </div>
             </div>
