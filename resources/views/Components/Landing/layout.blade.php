@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ $title ?? 'default title' }}</title>
+    <title>Home</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <header>
         <ul class="logo" style="list-style: none;">
             <li>
-                <a href="{{ route('Landingpage.index') }}">
-                    <img src="{{ asset('simpan/logo.png') }}" width="80px" height="80px">
+                <a href="{{ route('LandingIndex') }}">
+                    <img src="{{ asset('simpan/logo.png') }}" width="30px" height="30px">
                 </a>
             </li>
         </ul>
         <ul class="menu" style="list-style: none;">
-            <li><a href="{{ route('Landingpage.index') }}">Home</a></li>
-            <li><a href="{{ route('Landingpage.index') }}">Menu</a></li>
-            <li><a href="{{ route('Landingpage.index') }}">Team</a></li>
-            <li><a href="{{ route('Landingpage.index') }}">About us</a></li>
+            <li><a href="{{ route('LandingIndex') }}#home">Home</a></li>
+            <li><a href="{{ route('LandingIndex') }}#menu">Menu</a></li>
+            <li><a href="{{ route('LandingIndex') }}#team">Team</a></li>
+            <li><a href="{{ route('LandingIndex') }}#about">About us</a></li>
         </ul>
         <ul class="right" style="list-style: none;">
             <li>
-                <button class="order-button" onclick="window.location.href='{{ route('Landingpage.index') }}'">Order Now</button>
+                <button class="order-button" onclick="window.location.href='{{ route('LandingIndex') }}'">Order Now</button>
             </li>
         </ul>
-    </header>    
+    </header> 
     
     <main>
         {{ $slot}}
