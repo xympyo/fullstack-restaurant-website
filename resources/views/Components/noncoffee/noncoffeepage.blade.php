@@ -137,11 +137,6 @@
     <button class="button" onclick="next()">Next</button>
   </div>
 
-  <div class="footer">
-    <p>Back Home</p>
-  </div>
-</div>
-
 <script>
   function addToCart(item) {
     alert('Added ' + item + ' to cart');

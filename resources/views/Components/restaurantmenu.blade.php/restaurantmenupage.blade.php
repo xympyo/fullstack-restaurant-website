@@ -144,7 +144,7 @@
   }
 
   function nextSnacks() {
-    window.location.href = "snackspage.blade.php";
+    window.location.href = "snackpage.blade.php";
   }
 </script>
 </body>
