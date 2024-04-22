@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\LandingpageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    echo "<h1>Anjay</h1>";
-});
+Route::get('/', [LandingpageController::class, 'index'])->name('Landingpage.index');
+
+
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"])->name("dashboard");
 Route::get("/dashboard/list", [App\Http\Controllers\OrderListController::class, "orderList"])->name("dashboard.list");
