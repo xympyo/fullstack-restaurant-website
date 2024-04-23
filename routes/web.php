@@ -25,3 +25,8 @@ Route::post("/dashboard/menu/delete", [App\Http\Controllers\MenuEditController::
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// dashboard restaurantmenupage
+Route::get("/views/menu/restaurantmenu", [App\Http\Controllers\MenuEditController::class, "passDataDelete"])->name("dashboard.menu.delete");
+Route::post("/views/menu/restaurantmenu", [App\Http\Controllers\MenuEditController::class, "delete"])->name("dashboard.menu.delete.delete");
