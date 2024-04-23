@@ -1,11 +1,18 @@
 body {
     background: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     overflow-x: hidden;
 }
 
-ul, li, p, h1, h2, h3, body, html {
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+body,
+html {
     padding: 0;
     margin: 0;
 }
@@ -22,7 +29,7 @@ header {
     padding: 5px 20px;
     border-bottom: 1px solid #ccc;
     box-shadow: -5px 5px 10px -10px #2d3748;
-    background: #DBD3CD;
+    background: #dbd3cd;
 }
 
 .logo {
@@ -37,7 +44,7 @@ header {
 }
 
 .orange-text {
-    color: #DB7352;
+    color: #db7352;
     text-shadow: 4px 4px 10px rgb(240, 180, 133);
 }
 
@@ -64,11 +71,10 @@ header a {
     text-align: center; /* Menjadikan teks berada di tengah */
 }
 
-
 .order-button {
-    background-color: #DB7352;
+    background-color: #db7352;
     color: black;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 17px;
     font-weight: bold;
     border: none;
@@ -79,7 +85,7 @@ header a {
 }
 
 .order-button:hover {
-    background-color: #C65B3A;
+    background-color: #c65b3a;
 }
 
 .content-home {
@@ -110,13 +116,13 @@ header a {
 .desc h1 {
     font-size: 60px;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 20px;
 }
 
 .desc p {
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .pic1 {
@@ -134,7 +140,7 @@ header a {
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    background: #DBD3CD;
+    background: #dbd3cd;
     padding-bottom: 40px; /* Menambahkan jarak di bagian bawah */
 }
 
@@ -146,14 +152,14 @@ header a {
 }
 
 .desc2 h1 {
-    font-family: 'David Libre', sans-serif;
+    font-family: "David Libre", sans-serif;
     font-size: 60px;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .desc2 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
 }
 
@@ -221,7 +227,7 @@ header a {
 
 .desc3 h1 {
     margin-bottom: 30px; /* Menambahkan jarak antara h1 dan p */
-    font-family: 'David Libre', sans-serif; /* Menggunakan font David Libre */
+    font-family: "David Libre", sans-serif; /* Menggunakan font David Libre */
     font-size: 60px; /* Ukuran teks 60px */
     font-weight: bold; /* Tebal (bold) */
 }
@@ -229,7 +235,7 @@ header a {
 .desc3 p {
     margin-top: 20px; /* Menambahkan jarak antara p dan tombol */
     margin-bottom: 20px; /* Menambahkan jarak antara p dan tombol */
-    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
     font-size: 20px; /* Ukuran teks 20px */
     line-height: 1.6; /* Jarak antar baris 1.6 */
 }
@@ -240,9 +246,9 @@ header a {
 
 .menu-button {
     width: 150px; /* Menambahkan lebar tombol */
-    background-color: #DB7352;
+    background-color: #db7352;
     color: black;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
     font-weight: bold;
     border: none;
@@ -253,7 +259,7 @@ header a {
 }
 
 .menu-button:hover {
-    background-color: #C65B3A;
+    background-color: #c65b3a;
 }
 
 .Home-4 {
@@ -272,13 +278,13 @@ header a {
 .desc4 h1 {
     margin-top: 20px; /* Menambahkan jarak dari atas */
     margin-bottom: 30px; /* Menambahkan jarak antara h1 dan p */
-    font-family: 'David Libre', sans-serif; /* Menggunakan font David Libre */
+    font-family: "David Libre", sans-serif; /* Menggunakan font David Libre */
     font-size: 60px; /* Ukuran teks 60px */
     font-weight: bold; /* Tebal (bold) */
 }
 
 .desc4 p {
-    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
     font-size: 20px; /* Ukuran teks 20px */
 }
 
@@ -302,38 +308,37 @@ header a {
     z-index: 1;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.container{
+.container {
     min-width: 100%;
     margin: auto;
     position: relative;
 }
 
-.row{
+.row {
     display: flex;
     flex-wrap: wrap;
     max-width: 1170px;
     margin: auto;
 }
 
-ul{
+ul {
     list-style: none;
 }
 
 .footer {
     padding: 70px 0;
-    position: relative;
     bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around; /* Mengatur agar kolom footer menyebar secara merata */
+    justify-content: space-between; /* Mengatur agar kolom footer menyebar secara merata */
     flex-wrap: wrap; /* Agar konten footer bisa melintasi baris jika tidak cukup lebar */
-    background-color: #DBD3CD;
+    background-color: #dbd3cd;
 }
 
 .footer-col {
@@ -361,10 +366,10 @@ ul{
 }
 
 .footer-col ul li:not(:last child) {
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-footer-col ul li a{
+footer-col ul li a {
     font-size: 16px;
     text-transform: capitalize;
     text-decoration: none;
@@ -373,8 +378,8 @@ footer-col ul li a{
     transition: all 0.3s ease;
 }
 
-footer-col ul li a:hover{
-    color:aqua;
+footer-col ul li a:hover {
+    color: aqua;
     padding-left: 8px;
 }
 
@@ -391,20 +396,20 @@ footer-col ul li a:hover{
     transition: all 0.5s ease;
 }
 
-.footer-col .social-links a:hover{
+.footer-col .social-links a:hover {
     color: aqua;
     background-color: gray;
 }
 
-@media (max-width: 767px){
-    .footer-col{
+@media (max-width: 767px) {
+    .footer-col {
         width: 50%;
         margin-bottom: 30px;
     }
 }
 
-@media (max-width: 584px){
-    .footer-col{
+@media (max-width: 584px) {
+    .footer-col {
         width: 100%;
     }
 }

@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\RestaurantMenuController;
 use Illuminate\Support\Facades\Route;
 
+
+// landing page
 Route::get('/', [LandingpageController::class, 'index'])->name('LandingIndex');
+Route::get('/team', [LandingpageController::class, 'team'])->name("landing.team");
+Route::get('/about', [LandingpageController::class, 'about'])->name("landing.about");
 
-
+// restaurant menu
+Route::get("/menu", [RestaurantMenuController::class, 'passMenu'])->name("restaurant");
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"])->name("dashboard");
 // dashboard list

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Home</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <ul class="logo" style="list-style: none;">
@@ -14,20 +16,17 @@
             </li>
         </ul>
         <ul class="menu" style="list-style: none;">
-            <li><a href="{{ route('LandingIndex') }}#home">Home</a></li>
-            <li><a href="{{ route('LandingIndex') }}#menu">Menu</a></li>
-            <li><a href="{{ route('LandingIndex') }}#team">Team</a></li>
-            <li><a href="{{ route('LandingIndex') }}#about">About us</a></li>
+            <li><a href="{{ route('LandingIndex') }}">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="{{ route('landing.team') }}">Team</a></li>
+            <li><a href="{{ route('landing.about') }}">About us</a></li>
         </ul>
         <ul class="right" style="list-style: none;">
             <li>
-                <button class="order-button" onclick="window.location.href='{{ route('LandingIndex') }}'">Order Now</button>
+                <button class="order-button" onclick="">Order Now</button>
             </li>
         </ul>
-    </header> 
-    
-    <main>
-        {{ $slot}}
-    </main>
+    </header>
 </body>
+
 </html>

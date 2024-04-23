@@ -9,15 +9,6 @@
         <div class="footer">
             <div class="row">
                 <div class="footer-col">
-                    <h2>Cepi Cafe</h2>
-                    <p>Cepi Cafe is a place filled with inviting warmth and <br>
-                        ambiance. Upon entering, you're greeted by the tantalizing <br>
-                        aroma of freshly brewed coffee and a friendly atmosphere. <br>
-                        Inside, you'll find a wide array of high-quality coffee <br>
-                        selections from around the world, ranging from rich and <br>
-                        aromatic espressos to carefully crafted pour-over brews. <br>
-                    </p>
-
                     <h4>Opening House</h4>
                     <ul>
                         <li>Monday - Friday <br>
