@@ -17,7 +17,7 @@
         </ul>
         <ul class="menu" style="list-style: none;">
             <li><a href="{{ route('LandingIndex') }}">Home</a></li>
-            <li><a href="#">Menu</a></li>
+            <li><a href="{{ route('restaurant') }}">Menu</a></li>
             <li><a href="{{ route('landing.team') }}">Team</a></li>
             <li><a href="{{ route('landing.about') }}">About us</a></li>
         </ul>

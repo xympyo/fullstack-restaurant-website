@@ -8,6 +8,6 @@ class RestaurantMenuController extends Controller
 {
     public function passMenu()
     {
-        return view('menu.restaurantmenupage');
+        return view('restaurantmenu');
     }
 }

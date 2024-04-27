@@ -8,10 +8,11 @@
 </head>
 
 <body>
+    @include("Components.LandingComponent.header")
     @include("Landingpage.Home")
     @include("Landingpage.Menu")
     @include("Landingpage.Team")
-    @include("Landingpage.AboutUs")
+    @include("Components.LandingComponent.footer")
 </body>
 
 </html>

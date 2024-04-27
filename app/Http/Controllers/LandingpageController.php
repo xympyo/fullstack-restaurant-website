@@ -38,7 +38,7 @@ class LandingpageController extends Controller
             }
         }
 
-        return view('LandingIndex', [
+        return view('landingpage', [
             "fName" => $fName,
             "fDesc" => $fDesc,
             "fPrice" => $fPrice,

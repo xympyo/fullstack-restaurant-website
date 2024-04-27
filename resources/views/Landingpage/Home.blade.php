@@ -1,5 +1,4 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-@include('Components.Landing.layout')
 <section id="home">
     <div class="content-home">
         <div class="Home-1">
