@@ -16,6 +16,12 @@ class MenuEditController extends Controller
         $data = DB::select('SELECT id, f_name, f_description, f_price, f_category
             FROM `menu` WHERE id = ?', [$menuId]);
 
+        $category = DB::select('SELECT categories FROM `category`');
+        $categories = [];
+        foreach ($category as $cat) {
+            $categories[] = $cat->categories;
+        }
+
         // Check if the $data array is not empty before accessing index 0
         if (!empty($data)) {
             $f_id = $data[0]->id;
@@ -33,6 +39,7 @@ class MenuEditController extends Controller
         return view("Components.Menu.menuedit", [
             "f_id" => $f_id,
             "f_names" => $f_names,
+            "categories" => $categories,
             "f_desc" => $f_desc,
             "f_price" => $f_price,
             "f_category" => $f_category,
@@ -43,7 +50,14 @@ class MenuEditController extends Controller
 
     public function giveStorePage()
     {
-        return view("Components.Menu.menustore");
+        $category = DB::select('SELECT categories FROM `category`');
+        $categories = [];
+        foreach ($category as $cat) {
+            $categories[] = $cat->categories;
+        }
+        return view("Components.Menu.menustore", [
+            "categories" => $categories
+        ]);
     }
     public function store(Request $request)
     {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table("order", function (Blueprint $table) {
             // foreign key from menu to order for food_id
-            $table->foreign("food_id", "fk_menu_to_order")->references("id")->on("menu")->onUpdate("CASCADE")->onDelete("CASCADE");
+            $table->foreign("food_id", "fk_menu_to_order")->references("id")->on("menu")->onUpdate("set null")->onDelete("set null");
             // foreign key from customer to order for customer_id
             $table->foreign("customer_id", "fk_customer_to_order")->references("id")->on("customer")->onDelete("CASCADE")->onUpdate("CASCADE");
             // foreign key from order to order_status
@@ -30,6 +30,7 @@ return new class extends Migration
         Schema::table("order", function (Blueprint $table) {
             $table->dropForeign("fk_menu_to_order");
             $table->dropForeign("fk_customer_to_order");
+            $table->dropForeign("fk_order_to_order_status");
         });
     }
 };

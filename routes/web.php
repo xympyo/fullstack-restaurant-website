@@ -12,6 +12,9 @@ Route::get('/about', [LandingpageController::class, 'about'])->name("landing.abo
 
 // restaurant menu
 Route::get("/menu", [RestaurantMenuController::class, 'passMenu'])->name("restaurant");
+Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "custDetail"])->name("restaurant.item.cust");
+Route::get("/menu/{id}/{name}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
+
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"])->name("dashboard");
 // dashboard list

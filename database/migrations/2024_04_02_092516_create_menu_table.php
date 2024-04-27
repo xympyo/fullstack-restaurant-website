@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("category_id")->nullable()->index("fk_menu_to_customer");
             $table->string("f_name")->nullable();
             $table->longText("f_description")->nullable();
             $table->double("f_price")->nullable();

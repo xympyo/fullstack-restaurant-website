@@ -20,7 +20,6 @@ class OrderStatus extends Model
     ];
 
     protected $fillable = [
-        "order_id",
         "order_status",
         "updated_at",
         "created_at",

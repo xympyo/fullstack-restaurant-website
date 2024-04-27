@@ -74,9 +74,9 @@
                             <label for="foodCategory" class="form-label">Choose the Category</label>
                             <select class="form-select" name="foodCategory" id="foodCategory">
                                 <option selected>Choose The Drink Category</option>
-                                <option value="Tea">Tea</option>
-                                <option value="Coffee">Coffee</option>
-                                <option value="Non">Non</option>
+                                @foreach($categories as $index => $cat)
+                                <option value="{{ $categories[$index] }}">{{ $categories[$index] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">Create</button>

@@ -8,7 +8,7 @@
         font-family: "Frank Ruhl Libre", serif;
     }
 
-    .container-card {
+    .container-card-border {
         background-color: whitesmoke;
         padding: 1.5rem;
         border-radius: 3rem .5rem 3rem .5rem;
@@ -33,9 +33,9 @@
 
             <div class="row mt-3">
                 @foreach($fName as $index => $data)
-                <div class="col-4">
-                    <div class="card card-width" style="width: 18rem;">
-                        <div class="container-card" style="margin: 2rem;">
+                <div class="col-3">
+                    <div class="card card-width">
+                        <div class="container-card-border">
                             <div class="card-body">
                                 <h5 class="card-title menuText text-center">{{ $fName[$index] }}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary menuText text-center">{{ $fCategory[$index] }}</h6>
