@@ -14,7 +14,7 @@ class MenuEditController extends Controller
 
         // Fetch data from the menu table based on the provided menuId
         $data = DB::select('SELECT id, f_name, f_description, f_price, f_category
-        FROM `menu` WHERE id = ?', [$menuId]);
+            FROM `menu` WHERE id = ?', [$menuId]);
 
         // Check if the $data array is not empty before accessing index 0
         if (!empty($data)) {
