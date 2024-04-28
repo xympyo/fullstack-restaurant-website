@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Termwind\Components\Raw;
 use App\Models\Order;
+use App\Models\Menu;
+use App\Models\OrderStatus;
 
 class RestaurantMenuController extends Controller
 {
@@ -62,11 +64,7 @@ class RestaurantMenuController extends Controller
         // dd('menuDetail called');
         $datas = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE id =?', [$id]);
 
-        if (!empty($datas)) {
-            $price = number_format($datas[0]->f_price, 0, ',', '.');
-        } else {
-            $price = 0; // or some default value
-        }
+        $price = number_format($datas[0]->f_price, 0, ',', '.');
 
         return view('Components.RestaurantMenu.menudetail', [
             "datas" => $datas,
@@ -76,40 +74,55 @@ class RestaurantMenuController extends Controller
 
     public function custDetail($id, Request $request)
     {
-        dd('custDetail called');
+        // dd('custDetail called');
         $ids = $id;
-        $finalQty = Request::query('final_qty');
+        $finalQty = $request->input("final_qty");
+        $menu = Menu::where('id', $ids)->firstOrFail();
 
         $order = new Order();
         $order->food_id = $ids;
-        $order->customer_id = NULL;
         $order->status_id = 1;
+        $status = OrderStatus::where("id", $order->status_id)->firstOrFail();
+        $order->cust_quantity = $finalQty;
+        $order->customer_id = NULL;
         $order->cust_name = NULL;
         $order->customer_table = NULL;
-        $order->cust_food_name = NULL;
-        $order->cust_price = NULL;
-        $order->cust_quantity = $finalQty;
-        $order->cust_total = NULL;
-        $order->cust_status = NULL;
+        $order->cust_food_name = $menu->f_name;
+        $order->cust_price = $menu->f_price;
+        $order->cust_total = $menu->f_price * $finalQty;
+        $order->cust_status = $status->order_status;
         $order->created_at = now();
         $order->deleted_at = NULL;
         $order->updated_at = NULL;
         $order->save();
 
-        DB::statement("
-    UPDATE `order`
-    JOIN `menu` ON `order`.food_id = `menu`.id
-    JOIN `customer` ON `order`.customer_id = `customer`.id
-    JOIN `order_status` ON `order`.status_id = `order_status`.id
-    SET `order`.cust_food_name = `menu`.f_name,
-    `order`.cust_price = `menu`.f_price,
-    `order`.cust_total = `menu`.f_price * `order`.cust_quantity,
-    `order`.cust_name = `customer`.customer_name,
-    `order`.cust_status = `order_status`.`order_status`
-");
+        $maxId = DB::table('order')->max('id');
+        $newAutoIncrement = $maxId + 1;
+        DB::statement('ALTER TABLE `order` AUTO_INCREMENT = ' . $newAutoIncrement);
 
+        // Re-arrange IDs starting from 1
+        $idsToReArrange = Order::all()->pluck('id')->all();
+        sort($idsToReArrange);
+
+        $newId = 1;
+        foreach ($idsToReArrange as $id) {
+            if ($id != $newId) {
+                DB::table('order')->where('id', $id)->update(['id' => $newId]);
+            }
+            $newId++;
+        }
+
+        return redirect()->route('restaurant.cust', ['orderId' => $newId - 1]);
+    }
+
+    public function passCust($orderId)
+    {
         return view('Components.RestaurantMenu.custdetail', [
-            'id' => $ids
+            "orderId" => $orderId
         ]);
+    }
+
+    public function postCust($orderId)
+    {
     }
 }

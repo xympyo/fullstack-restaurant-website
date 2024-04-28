@@ -29,7 +29,7 @@
         </div>
         <div class="row mt-3 d-flex flex-row align-items-center">
             <div class="col-5">
-                <img src="@if(!empty($datas)) {{ asset('restaurant_menu/'. $datas[0]->f_photo). '.png' }} @else {{ asset('default-image.png') }} @endif" class="img-fluid" alt="" style="width: 100%;">
+                <img src="@if(!empty($datas)) {{ asset('restaurant_menu/'. $datas[0]->f_photo). '.png' }} @else {{ asset('default-image.png') }} @endif" class="img-fluid" alt="">
             </div>
             <div class="col-7">
                 <h1 class="fw-bold">@if(!empty($datas)) {{ $datas[0]->f_name }} @else No menu item found @endif</h1>
@@ -51,10 +51,16 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 d-flex flex-row">
-                        <form action="{{ route('restaurant.item.cust', ['id' => $datas[0]->id]) }}" method="GET">
+                        @if(!empty($datas))
+                        <form action="{{ route('restaurant.item.pass', ['ids' => $datas[0]->id]) }}" method="POST">
+                            @csrf
+                            @method('post')
                             <input type="hidden" id="final_qty" name="final_qty" value="1">
                             <button type="submit" class="btn-order">Add Order</button>
                         </form>
+                        @else
+                        <p>No data found</p>
+                        @endif
                     </div>
                 </div>
             </div>
