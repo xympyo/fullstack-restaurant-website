@@ -8,6 +8,7 @@ use Termwind\Components\Raw;
 use App\Models\Order;
 use App\Models\Menu;
 use App\Models\OrderStatus;
+use App\Models\Customer;
 
 class RestaurantMenuController extends Controller
 {
@@ -122,7 +123,22 @@ class RestaurantMenuController extends Controller
         ]);
     }
 
-    public function postCust($orderId)
+    public function postCust($orderId, Request $request)
     {
+        $orderIds = $orderId;
+        $custName = $request->input('cust_name');
+        $custPhone = $request->input('cust_phone_number');
+        $customer = new Customer();
+        $customer->customer_name = $custName;
+        $customer->customer_phone = $custPhone;
+        $customer->created_at = now();
+        $customer->save();
+
+        $order = Order::where('id', $orderIds)->firstOrFail();
+        $customerId = $customer->id;
+        $order->customer_id = $customerId;
+        $order->cust_name = $custName;
+        $order->customer_table = NULL;
+        $order->save();
     }
 }

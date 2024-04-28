@@ -28,11 +28,11 @@
                             @method('post')
                             <div class="d-flex flex-column mt-3">
                                 <label class="fw-medium" for="name">Name</label>
-                                <input class="under-border" type="text" name="name" placeholder="Please input your name here">
+                                <input class="under-border" type="text" name="cust_name" placeholder="Please input your name here">
                             </div>
                             <div class="d-flex flex-column mt-3">
                                 <label class="fw-medium" for="phone_number">Phone Number</label>
-                                <input class="under-border" type="text" name="phone_number" placeholder="081212341234">
+                                <input class="under-border" type="text" name="cust_phone_number" placeholder="081212341234">
                             </div>
                             <div class="row">
                                 <button type="submit" class="btn-submit mt-3">Submit</button>
