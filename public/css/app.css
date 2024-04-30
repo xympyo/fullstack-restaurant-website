@@ -262,51 +262,104 @@ header a {
     background-color: #c65b3a;
 }
 
-.Home-4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px 0; /* Menambahkan padding atas dan bawah */
-}
-
-.desc4 {
-    text-align: center;
-    margin-bottom: 30px; /* Menambahkan jarak dari bawah */
-}
-
+/* Home 4 */
 .desc4 h1 {
-    margin-top: 20px; /* Menambahkan jarak dari atas */
-    margin-bottom: 30px; /* Menambahkan jarak antara h1 dan p */
-    font-family: "David Libre", sans-serif; /* Menggunakan font David Libre */
-    font-size: 60px; /* Ukuran teks 60px */
-    font-weight: bold; /* Tebal (bold) */
-}
+    font-family: 'David Libre';
+    font-size: 60px;
+    font-weight: bold;
+    margin-top: 40px;
+  }
 
-.desc4 p {
-    font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
-    font-size: 20px; /* Ukuran teks 20px */
-}
+  .chef-card {
+    margin-top: 30px;
+  }
+  
+  .desc4 p {
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+  }
 
-.pic4 {
+  /* chefcarrrdddd */
+
+.chef-card {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px; /* Menambahkan jarak di bagian atas */
-    padding: 0 30px;
+  }
+  
+  .chef-profile {
+    position: relative;
+    width: 258px;
+    height: 348px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-bottom: 120px;
+    margin-right: 90px;
+    margin-left: 90px;
+  }
+  
+  .chef-profile:hover {
+    transform: translateY(-5px);
+  }
+  
+  .circle-back {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-50px);
+    width: 183px;
+    height: 183px;
+    background-color: orange;
+    border-radius: 50%;
+  }
+  
+  .chef-profile img {
+    position: absolute;
+    top: 38%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 175px;
+    border-radius: 50%;
+    z-index: 3;
+  }
+  
+  .chef-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .chef-name {
+    position: relative;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+.chef-card .title,
+.chef-card .desk {
+  font-size: 13px;
 }
 
-.pic4 img {
-    width: calc(25% - 15px); /* Lebar gambar */
-    height: auto;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
-    transition: transform 0.3s ease; /* Efek transisi */
+.chef-card .title{
+    margin-top: 5px;
+    margin-bottom: 8px;
 }
 
-.pic4 img:hover {
-    transform: scale(1.1); /* Efek zoom saat disentuh */
-    z-index: 1;
+.chef-card .desk{
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
 }
+
+/* ajuhshwdhsdbhjsebheb */
 
 * {
     margin: 0;
@@ -431,3 +484,6 @@ footer-col ul li a:hover {
 .footer-col ul li:first-child {
     margin-bottom: 10px; /* Menambahkan jarak dari p atasnya */
 }
+
+
+/* ABOUT */

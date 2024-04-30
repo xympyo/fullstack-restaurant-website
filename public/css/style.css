@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=David+Libre&display=swap');
+
+.team {
+  max-width: 100%;
+  padding: 20px;
+  margin: 30px;
+  text-align: center;
+}
+
+.team ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  flex-basis: calc(30% - 10px);
+  margin-bottom: 20px;
+}
+
+.team-member:nth-child(2),
+.team-member:nth-child(3) {
+  margin-right: 20px;
+}
+
+.team-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.team-member h2,
+.team-member p {
+  font-family: 'Poppins', sans-serif;
+}
+
+.team-member h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.team-member .p title {
+  font-style: italic;
+}
+
+.team h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.team .desk {
+  font-size: 18px;
+  font-family: 'poppins';
+}

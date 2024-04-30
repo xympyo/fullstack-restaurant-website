@@ -52,11 +52,11 @@ LIMIT 4;");
 
     public function team()
     {
-        return view('Landingpage.Team');
+        return view('team');
     }
 
     public function about()
     {
-        return view('Landingpage.AboutUs');
+        return view('Landingpage.About');
     }
 }
