@@ -37,6 +37,7 @@
                     <div class="card card-width">
                         <div class="container-card-border">
                             <div class="card-body">
+                                <img src="{{ asset('restaurant_menu/' . $fPhoto[$index]) . '.png' }}" alt="">
                                 <h5 class="card-title menuText text-center">{{ $fName[$index] }}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary menuText text-center">{{ $fCategory[$index] }}</h6>
                                 <p class="card-text menuText text-center">{{ $fDesc[$index] }}</p>

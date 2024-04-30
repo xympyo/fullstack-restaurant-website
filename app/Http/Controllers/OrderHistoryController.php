@@ -21,7 +21,7 @@ class OrderHistoryController extends Controller
         `order`.cust_total
     FROM 
         `order`
-    JOIN 
+    JOIN  
         `customer` ON `order`.customer_id = `customer`.id
         WHERE `order`.status_id = 4
     ");
@@ -33,6 +33,7 @@ class OrderHistoryController extends Controller
         $custTable = [];
         $custDate = [];
         $custTotal = [];
+        $custTotalRupiah = [];
 
         foreach ($customerDataCompleted as $customers) {
             $custId[] = $customers->id;

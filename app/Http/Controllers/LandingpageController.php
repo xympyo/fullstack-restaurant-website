@@ -10,15 +10,16 @@ class LandingpageController extends Controller
     public function index()
     {
         $menu = DB::select("SELECT 
-        f_name, 
-        f_description, 
-        FORMAT(f_price, 0) AS formatted_price, 
-        f_category 
-    FROM 
-        `menu` 
-    WHERE 
-        deleted_at IS NULL 
-    LIMIT 4;");
+    f_name, 
+    f_description,
+    f_photo,
+    f_category,
+    ROUND(f_price) AS formatted_price
+FROM 
+    `menu` 
+WHERE 
+    deleted_at IS NULL 
+LIMIT 4;");
 
         if (!$menu) {
             // Error handling: Handle the case when no data is retrieved from the database
@@ -28,6 +29,7 @@ class LandingpageController extends Controller
             $fDesc = [];
             $fPrice = [];
             $fCategory = [];
+            $fPhoto = [];
         } else {
             // If data is retrieved successfully, populate the arrays
             foreach ($menu as $menus) {
@@ -35,6 +37,7 @@ class LandingpageController extends Controller
                 $fDesc[] = $menus->f_description;
                 $fPrice[] = $menus->formatted_price;
                 $fCategory[] = $menus->f_category;
+                $fPhoto[] = $menus->f_photo;
             }
         }
 
@@ -42,7 +45,8 @@ class LandingpageController extends Controller
             "fName" => $fName,
             "fDesc" => $fDesc,
             "fPrice" => $fPrice,
-            "fCategory" => $fCategory
+            "fCategory" => $fCategory,
+            "fPhoto" => $fPhoto
         ]);
     }
 

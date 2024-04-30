@@ -12,7 +12,7 @@ class OrderListController extends Controller
     {
         // Fetch data for today's orders, all orders, and pending orders
         $customerDataToday = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id, cust_status FROM `order` WHERE DATE(created_at) = CURDATE() AND status_id != 4 AND status_id != 5");
-        $customerDataAll = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id FROM `order`");
+        $customerDataHistory = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, status_id, cust_status FROM `order` WHERE DATE(created_at)!= CURDATE() AND status_id = 4");
         $customerDataPending = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 1 AND DATE(created_at) = CURDATE()");
         $customerDataConfirmed = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 2 AND DATE(created_at) = CURDATE()");
         $customerDataPreparing = DB::select("SELECT id, cust_name, cust_food_name, cust_quantity, customer_table, created_at, cust_total, cust_status FROM `order` WHERE status_id = 3 AND DATE(created_at) = CURDATE()");
@@ -79,6 +79,30 @@ class OrderListController extends Controller
         $custTotalCancelled = [];
         $custTotalRupiahCancelled = [];
         $custStatusCancelled = [];
+        // Initialize history arrays to hold data
+        $custIdHistory = [];
+        $custNameHistory = [];
+        $custFoodHistory = [];
+        $custQtyHistory = [];
+        $custTableHistory = [];
+        $custCreatedAtHistory = [];
+        $custTotalHistory = [];
+        $custTotalRupiahHistory = [];
+        $custStatusHistory = [];
+
+        // Populate arrays for history orders
+        foreach ($customerDataHistory as $customers) {
+            $custIdHistory[] = $customers->id;
+            $custNameHistory[] = $customers->cust_name;
+            $custFoodHistory[] = $customers->cust_food_name;
+            $custQtyHistory[] = $customers->cust_quantity;
+            $custTableHistory[] = $customers->customer_table;
+            $custCreatedAtHistory[] = $customers->created_at;
+            $custTotalHistory[] = $customers->cust_total;
+            // Convert from Vanilla Money to IDR
+            $custTotalRupiahHistory[] = number_format($customers->cust_total, 0, ",", ".");
+            $custStatusHistory[] = $customers->cust_status;
+        }
 
         // Populate arrays for cancelled orders
         foreach ($customerDataCancelled as $customers) {
@@ -206,7 +230,7 @@ class OrderListController extends Controller
             "custCreatedAtCompleted" => $custCreatedAtCompleted,
             "custTotalRupiahCompleted" => $custTotalRupiahCompleted,
             "custStatusCompleted" => $custStatusCompleted,
-            // Confirmed Data
+            // Cancelled Data
             "custIdCancelled" => $custIdCancelled,
             "custNameCancelled" => $custNameCancelled,
             "custFoodCancelled" => $custFoodCancelled,
@@ -215,6 +239,15 @@ class OrderListController extends Controller
             "custCreatedAtCancelled" => $custCreatedAtCancelled,
             "custTotalRupiahCancelled" => $custTotalRupiahCancelled,
             "custStatusCancelled" => $custStatusCancelled,
+            // History Data
+            "custIdHistory" => $custIdHistory,
+            "custNameHistory" => $custNameHistory,
+            "custFoodHistory" => $custFoodHistory,
+            "custQtyHistory" => $custQtyHistory,
+            "custTableHistory" => $custTableHistory,
+            "custCreatedAtHistory" => $custCreatedAtHistory,
+            "custTotalRupiahHistory" => $custTotalRupiahHistory,
+            "custStatusHistory" => $custStatusHistory,
         ]);
     }
 
