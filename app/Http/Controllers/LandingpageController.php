@@ -15,11 +15,11 @@ class LandingpageController extends Controller
     f_photo,
     f_category,
     ROUND(f_price) AS formatted_price
-FROM 
+        FROM 
     `menu` 
-WHERE 
+        WHERE 
     deleted_at IS NULL 
-LIMIT 4;");
+        LIMIT 4;");
 
         if (!$menu) {
             // Error handling: Handle the case when no data is retrieved from the database
@@ -35,7 +35,7 @@ LIMIT 4;");
             foreach ($menu as $menus) {
                 $fName[] = $menus->f_name;
                 $fDesc[] = $menus->f_description;
-                $fPrice[] = $menus->formatted_price;
+                $fPrice[] = number_format($menus->formatted_price / 1000, 1) == (int) number_format($menus->formatted_price / 1000, 1) ? (int) number_format($menus->formatted_price / 1000, 1) : number_format($menus->formatted_price / 1000, 1);
                 $fCategory[] = $menus->f_category;
                 $fPhoto[] = $menus->f_photo;
             }

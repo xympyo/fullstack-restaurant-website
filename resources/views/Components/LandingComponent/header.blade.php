@@ -4,6 +4,16 @@
 <head>
     <title>Home</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .nav {
+            border: 0;
+            transition: ease-in-out 2s;
+
+            &:hover {
+                border-bottom: solid #211F20;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -11,15 +21,15 @@
         <ul class="logo" style="list-style: none;">
             <li>
                 <a href="{{ route('LandingIndex') }}">
-                    <img src="{{ asset('simpan/logo.png') }}" width="30px" height="30px">
+                    <p>Cepi Cafe</p>
                 </a>
             </li>
         </ul>
-        <ul class="menu" style="list-style: none;">
-            <li><a href="{{ route('LandingIndex') }}">Home</a></li>
-            <li><a href="{{ route('restaurant') }}">Menu</a></li>
-            <li><a href="{{ route('landing.team') }}">Team</a></li>
-            <li><a href="{{ route('landing.about') }}">About us</a></li>
+        <ul class="ms-auto d-flex flex-row" style="list-style: none;">
+            <li><a class="nav" href="{{ route('LandingIndex') }}">Home</a></li>
+            <li><a class="nav" href="{{ route('restaurant') }}">Menu</a></li>
+            <li><a class="nav" href="{{ route('landing.team') }}">Team</a></li>
+            <li><a class="nav" href="{{ route('landing.about') }}">About us</a></li>
         </ul>
     </header>
 </body>

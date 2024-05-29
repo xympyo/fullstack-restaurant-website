@@ -15,16 +15,4 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
-        @foreach ($categories as $index => $cat)
-        <div class="col-3">
-            <div class="list-container">
-                <div class="d-flex flex-row">
-                    <img src="" alt="">
-                    <p class="fs-6 fw-semibold">{{ $categories[$index] }}</p>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
 </div>

@@ -6,10 +6,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cepi Cafe | @if(!empty($datas)) {{ $datas[0]->f_name }} @else No menu item found @endif</title>
+    <title>Cepi Cafe | @if (!empty($datas))
+            {{ $datas[0]->f_name }}
+        @else
+            No menu item found
+        @endif
+    </title>
     <style>
         a {
             cursor: pointer;
+        }
+
+        .img-detail {
+            filter: drop-shadow(5px 40px 30px #DB7352);
+            transition: ease-in-out .5s;
+            animation: float ease-in-out infinite 2s;
+
+            &:hover {
+                transform: translateY(-1rem);
+                filter: drop-shadow(5px 5rem 30px #DB7352);
+            }
+
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-1rem);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
     </style>
 </head>
@@ -20,20 +51,37 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex flex-row">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                     </svg>
-                    <h5 class="lh-1 fw-bold ms-2">Menu</h5>
+                    <a href="{{ route('restaurant') }}">
+                        <h5 class="lh-1 fw-bold ms-2">Menu</h5>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row mt-3 d-flex flex-row align-items-center">
-            <div class="col-5">
-                <img src="@if(!empty($datas)) {{ asset('restaurant_menu/'. $datas[0]->f_photo). '.png' }} @else {{ asset('default-image.png') }} @endif" class="img-fluid" alt="">
+            <div class="col-6">
+                <img src="@if (!empty($datas)) {{ asset('restaurant_menu/' . $datas[0]->f_photo) . '.png' }} @else {{ asset('default-image.png') }} @endif"
+                    class="img-fluid img-detail" alt="" style="width: 100%">
             </div>
-            <div class="col-7">
-                <h1 class="fw-bold">@if(!empty($datas)) {{ $datas[0]->f_name }} @else No menu item found @endif</h1>
-                <h4 class="mt-3">@if(!empty($datas)) {{ $datas[0]->f_description }} @else No description available @endif</h4>
+            <div class="col-6">
+                <h1 class="fw-bold">
+                    @if (!empty($datas))
+                        {{ $datas[0]->f_name }}
+                    @else
+                        No menu item found
+                    @endif
+                </h1>
+                <h4 class="mt-3">
+                    @if (!empty($datas))
+                        {{ $datas[0]->f_description }}
+                    @else
+                        No description available
+                    @endif
+                </h4>
                 <div class="row mt-5 d-flex flex-row align-items-center">
                     <div class="col-6 d-flex flex-row align-items-center">
                         <h4 class="secondary-text">Rp &nbsp</h4>
@@ -51,15 +99,15 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 d-flex flex-row">
-                        @if(!empty($datas))
-                        <form action="{{ route('restaurant.item.pass', ['ids' => $datas[0]->id]) }}" method="POST">
-                            @csrf
-                            @method('post')
-                            <input type="hidden" id="final_qty" name="final_qty" value="1">
-                            <button type="submit" class="btn-order">Add Order</button>
-                        </form>
+                        @if (!empty($datas))
+                            <form action="{{ route('restaurant.item.pass', ['ids' => $datas[0]->id]) }}" method="POST">
+                                @csrf
+                                @method('post')
+                                <input type="hidden" id="final_qty" name="final_qty" value="1">
+                                <button type="submit" class="btn-order">Add Order</button>
+                            </form>
                         @else
-                        <p>No data found</p>
+                            <p>No data found</p>
                         @endif
                     </div>
                 </div>

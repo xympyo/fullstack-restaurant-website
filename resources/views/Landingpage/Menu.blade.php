@@ -1,74 +1,140 @@
-<!-- google font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap" rel="stylesheet">
-<!-- style font -->
 <style>
-    .menuText {
-        font-family: "Frank Ruhl Libre", serif;
+    .moc-bg {
+        background-color: #DBD3CD;
     }
 
-    .container-card-border {
-        background-color: whitesmoke;
-        padding: 1.5rem;
-        border-radius: 3rem .5rem 3rem .5rem;
+    .price {
+        background-color: #211F20;
+        color: #DBD3CD;
+        padding: 1rem;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 14rem;
+        left: 14rem;
+    }
+
+    .card-c {
+        transition: ease-in-out .25s;
+
+        &:hover {
+            filter: drop-shadow(0px 10px 5px #211F20);
+            transform: translateY(-1rem);
+
+            .food-img {
+                transform: translateY(-.5rem);
+            }
+
+            .text {
+                transform: translateY(.5rem);
+            }
+        }
+    }
+
+    .food-img {
+        transition: ease-in-out .25s;
+    }
+
+    .text {
+        transition: ease-in-out .25s;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .plate {
+        animation: float ease-in-out infinite 10s;
+        transition: ease-in-out;
+    }
+
+    .leaf1 {
+        left: 1rem;
+        top: 3rem;
+        animation: float ease-in-out infinite 7s;
+    }
+
+    .leaf2 {
+        left: 5rem;
+        bottom: 2rem;
+        animation: float infinite reverse 4s;
+    }
+
+    .leaf3 {
+        right: 8rem;
+        bottom: 1rem;
+        animation: float reverse infinite 6s;
+    }
+
+    .leaf4 {
+        right: -2rem;
+        top: 1rem;
+        animation: float ease-in-out infinite 4s;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0rem);
+        }
+
+        50% {
+            transform: translateY(1rem);
+        }
+
+        100% {
+            transform: translateY(0rem);
+        }
     }
 </style>
-<!-- css -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<section id="menu">
-    <div class="content-home">
-        <div class="Home-2">
-            <div class="row">
-                <div class="desc2">
-                    <h1>
-                        Our Special Dish<br>
-                    </h1>
-                    <p>Indulge further with our selection of signature dishes, <br>
-                        each crafted with care to tantalize your taste buds and <br>
-                        leave you craving for more.
-                    </p>
-                </div>
-            </div>
 
-            <div class="row mt-3">
-                @foreach($fName as $index => $data)
-                <div class="col-3">
-                    <div class="card card-width">
-                        <div class="container-card-border">
-<<<<<<< Updated upstream
-                            <div class="card-body">
-                                <img src="{{ asset('restaurant_menu/' . $fPhoto[$index]) . '.png' }}" alt="">
-=======
-                            <div class="card-body"> 
->>>>>>> Stashed changes
-                                <h5 class="card-title menuText text-center">{{ $fName[$index] }}</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary menuText text-center">{{ $fCategory[$index] }}</h6>
-                                <p class="card-text menuText text-center">{{ $fDesc[$index] }}</p>
-                                <h2 class="text-center menuText">{{ $fPrice[$index] }}</h2>
-                            </div>
+<div class="container-fluid moc-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1 class="text-center fw-bold mt-5">Our Special Dish</h1>
+                <h4 class="text-center mt-3">Indulge further with our selection of signature dishes, each crafted with
+                    care
+                    to
+                    tantalize your taste
+                    buds and leave you craving for more.</h4>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row pb-5 mt-5 pt-5">
+            @foreach ($fName as $index => $name)
+                <div class="col-3 card-c">
+                    <div class="card d-flex justify-content-center align-items-center"
+                        style="height: 16rem; position: relative; border-radius:4rem .5rem 4rem .5rem">
+                        <img src="{{ asset('restaurant_menu/' . $fPhoto[$index] . '.png') }}"
+                            class="card-img-top img-fluid food-img" alt="{{ $fPhoto[$index] }}"
+                            style="height: 12rem; padding:2rem; position: absolute; bottom:10rem">
+                        <div class="card-body d-flex align-items-center flex-column justify-content-center">
+                            <h2 class="card-title text-center text">{{ $fName[$index] }}</h2>
+                            <p class="card-text text-center text">{{ $fDesc[$index] }}</p>
+                        </div>
+                        <div class="price">
+                            <p>{{ $fPrice[$index] }}K</p>
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
+            @endforeach
+        </div>
 
-            <div class="Home-3 mt-3">
-                <div class="pic3">
-                    <img src="{{ asset('simpan/plate.png') }}" alt="Home3" />
-                    <div class="desc3-container">
-                        <div class="desc3">
-                            <h1>Our Menu</h1>
-                            <p>Indulge in a world of delightful flavors at our café – <br>
-                                simply tap the menu button and let your taste buds <br>
-                                journey through our tempting selections.</p>
-                        </div>
-                        <div class="button-container">
-                            <button class="menu-button" onclick="window.location.href='link_ke_menu_nailah'">Menu</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="row mt-5 pb-5 d-flex align-items-center">
+            <div class="col-6" style="position: relative">
+                <img src="{{ asset('simpan/plate.png') }}" class="plate" alt="">
+                <img src="{{ asset('simpan/leaf1.png') }}" class="absolute leaf1" alt="">
+                <img src="{{ asset('simpan/leaf2.png') }}" class="absolute leaf2" alt="">
+                <img src="{{ asset('simpan/leaf3.png') }}" class="absolute leaf3" alt="">
+                <img src="{{ asset('simpan/leaf4.png') }}" class="absolute leaf4" alt="">
+            </div>
+            <div class="col-6">
+                <h1 class="text-center">Our Menu</h1>
+                <h5 class="text-center mt-4">Indulge in a world of delightful flavors at our cafe. <br />Simply tap the
+                    menu
+                    button and let your
+                    taste buds journey through our tempting selections.</h5>
             </div>
         </div>
     </div>
-</section>
+</div>

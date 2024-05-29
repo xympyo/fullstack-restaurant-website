@@ -16,7 +16,7 @@ Route::get("/menu", [RestaurantMenuController::class, 'passMenu'])->name("restau
 Route::get("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "passCust"])->name("restaurant.cust");
 Route::post("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "postCust"])->name("restaurant.cust.post");
 // item pass and post
-Route::get("/menu/{id}/{name}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
+Route::get("/menu/{id}/{name?}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
 Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "custDetail"])->name("restaurant.item.pass");
 
 
