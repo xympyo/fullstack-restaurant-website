@@ -37,4 +37,10 @@ class Menu extends Model
     {
         return $this->belongsTo("App\Models\Order", "id", "food_id");
     }
+
+    // many to one from menu to detail_order
+    public function detail_oredr()
+    {
+        return $this->hasMany("App\Models\DetailOrder", "food_id");
+    }
 }

@@ -20,16 +20,8 @@ class Order extends Model
     ];
 
     protected $fillable = [
-        "food_id",
         "customer_id",
         "status_id",
-        "customer_name",
-        "customer_table",
-        "cust_food_name",
-        "cust_price",
-        "cust_quantity",
-        "cust_total",
-        "cust_status",
         "updated_at",
         "created_at",
         "deleted_at"
@@ -53,15 +45,15 @@ class Order extends Model
         return $this->belongsTo("App\Models\OrderHistory", "status_id", "order_id");
     }
 
-    // one to many from order to menu
-    public function menu()
-    {
-        return $this->hasMany("App\Models\Menu", "id");
-    }
-
     // many to one from order to customer
     public function customer()
     {
         return $this->belongsTo("App\Models\Customer", "customer_id", "id");
+    }
+
+    // one to one from order to detail_order
+    public function detail_order()
+    {
+        return $this->belongsTo("App\Models\DetailOrder", "id", "order_id");
     }
 }
