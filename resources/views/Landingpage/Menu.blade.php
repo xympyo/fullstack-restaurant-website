@@ -105,6 +105,21 @@
         width: min-content;
         position: absolute;
     }
+
+    .background1 {
+        left: 0rem;
+        top: 2rem;
+    }
+
+    .background2 {
+        right: -4rem;
+        bottom: 0rem;
+    }
+
+    .background3 {
+        left: 0rem;
+        bottom: 8rem;
+    }
 </style>
 <!-- css -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -160,9 +175,12 @@
                             <h4 class="mt-3">Indulge in a world of delightful flavors at our cafe, simply tap the menu
                                 button and let
                                 your taste buds journey through our tempting sections</h4>
-                            <img class="backgrounds" src="{{ asset('simpan/background2.png') }}" alt="">
-                            <img class="backgrounds" src="{{ asset('simpan/background3.png') }}" alt="">
-                            <img class="backgrounds"src="{{ asset('simpan/background4.png') }}" alt="">
+                            <img class="backgrounds background1" src="{{ asset('simpan/background2.png') }}"
+                                alt="">
+                            <img class="backgrounds background2" src="{{ asset('simpan/background3.png') }}"
+                                alt="">
+                            <img class="backgrounds background3"src="{{ asset('simpan/background4.png') }}"
+                                alt="">
                         </div>
                     </div>
                 </div>
