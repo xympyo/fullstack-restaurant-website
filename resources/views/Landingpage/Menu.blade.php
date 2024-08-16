@@ -9,9 +9,27 @@
     }
 
     .container-card-border {
-        background-color: whitesmoke;
-        padding: 1.5rem;
-        border-radius: 3rem .5rem 3rem .5rem;
+        height: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: ease-out s;
+
+        &:hover {
+            .card-content {
+                transform: translateY(-4rem);
+            }
+
+            height: 16rem;
+        }
+    }
+
+    .card-content {
+        transition: ease-out 1s;
+    }
+
+    .dish-container {
+        position: relative;
     }
 </style>
 <!-- css -->
@@ -31,36 +49,37 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
-                @foreach($fName as $index => $data)
-                <div class="col-3">
-                    <div class="card card-width">
-                        <div class="container-card-border">
-                            <div class="card-body">
-                                <img src="{{ asset('restaurant_menu/' . $fPhoto[$index]) . '.png' }}" alt="">
-                                <h5 class="card-title menuText text-center">{{ $fName[$index] }}</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary menuText text-center">{{ $fCategory[$index] }}</h6>
-                                <p class="card-text menuText text-center">{{ $fDesc[$index] }}</p>
-                                <h2 class="text-center menuText">{{ $fPrice[$index] }}</h2>
+            <div class="row mt-3 dish-container">
+                @foreach ($fName as $index => $data)
+                    <div class="col-3">
+                        <div class="card card-width" style="border-radius: 4rem .5rem 4rem .5rem; position: relative;">
+                            <div class="container-card-border">
+                                <div class="card-body card-content">
+                                    <img src="{{ asset('restaurant_menu/' . $fPhoto[$index]) . '.png' }}" alt=""
+                                        class="food-image image-fluid">
+                                    <h5 class="card-title menuText text-center">{{ $fName[$index] }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary menuText text-center">
+                                        {{ $fCategory[$index] }}</h6>
+                                    <p class="card-text menuText text-center">{{ $fDesc[$index] }}</p>
+                                    <h2 class="text-center menuText">{{ $fPrice[$index] }}</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 
-            <div class="Home-3 mt-3">
-                <div class="pic3">
-                    <img src="{{ asset('simpan/plate.png') }}" alt="Home3" />
-                    <div class="desc3-container">
-                        <div class="desc3">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="{{ asset('simpan/plate.png') }}" alt="">
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                        <div class="d-flex flex-column">
                             <h1>Our Menu</h1>
-                            <p>Indulge in a world of delightful flavors at our café – <br>
-                                simply tap the menu button and let your taste buds <br>
-                                journey through our tempting selections.</p>
-                        </div>
-                        <div class="button-container">
-                            <button class="menu-button" onclick="window.location.href='link_ke_menu_nailah'">Menu</button>
+                            <h4 class="mt-3">Indulge in a world of delightful flavors at our cafe, simply tap the menu
+                                button and let
+                                your taste buds journey through our tempting sections</h4>
                         </div>
                     </div>
                 </div>
