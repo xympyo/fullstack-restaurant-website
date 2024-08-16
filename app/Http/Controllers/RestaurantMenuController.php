@@ -24,11 +24,12 @@ class RestaurantMenuController extends Controller
             $id[] = $cat->id;
         }
 
-        $datas = [[]];
-        $datas[0][] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Sandwich"');
-        $datas[1][] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Cake"');
-        $datas[2][] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Coffee"');
-        $datas[3][] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Non Coffee"');
+        // Initialize $datas without the inner empty array
+        $datas = [];
+        $datas[] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Food"');
+        $datas[] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Coffee"');
+        $datas[] = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE f_category = "Non Coffee"');
+
         // Initialize arrays
         $ids = [];
         $fName = [];
@@ -36,16 +37,14 @@ class RestaurantMenuController extends Controller
         $fPrice = [];
         $fPhoto = [];
 
-        foreach ($datas as $outerIndex => $outer) {
-            foreach ($outer as $innerIndex => $inner) {
-                foreach ($inner as $item) {
-                    // Append to arrays
-                    $fName[$outerIndex][] = $item->f_name;
-                    $fDesc[$outerIndex][] = $item->f_description;
-                    $fPrice[$outerIndex][] = number_format($item->f_price, 0, ',', '.');
-                    $fPhoto[$outerIndex][] = $item->f_photo;
-                    $ids[$outerIndex][] = $item->id;
-                }
+        foreach ($datas as $outerIndex => $menuItems) {
+            if (empty($menuItems)) continue;
+            foreach ($menuItems as $item) {
+                $fName[$outerIndex][] = $item->f_name;
+                $fDesc[$outerIndex][] = $item->f_description;
+                $fPrice[$outerIndex][] = number_format($item->f_price, 0, ',', '.');
+                $fPhoto[$outerIndex][] = $item->f_photo;
+                $ids[$outerIndex][] = $item->id;
             }
         }
 
