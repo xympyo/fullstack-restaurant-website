@@ -4,6 +4,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap" rel="stylesheet">
 <!-- style font -->
 <style>
+    body {
+        overflow-x: hidden
+    }
+
     .menuText {
         font-family: "Frank Ruhl Libre", serif;
     }
@@ -30,6 +34,76 @@
 
     .dish-container {
         position: relative;
+
+        .img1 {
+            position: absolute;
+            right: -24rem;
+        }
+    }
+
+    .plate-container {
+        position: relative;
+        transition: ease-out .5s;
+
+        &:hover {
+            transform: scale(105%);
+
+            .leafs {
+                z-index: -1;
+                filter: blur(1rem);
+            }
+        }
+    }
+
+    .leafs {
+        position: absolute;
+        transition: ease-out .3s;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0rem)
+        }
+
+        50% {
+            transform: translateY(1rem);
+        }
+
+        100% {
+            transform: translateY(0rem);
+        }
+    }
+
+    .leaf1 {
+        right: 0rem;
+        animation: float 2s infinite reverse;
+    }
+
+    .leaf2 {
+        left: 0rem;
+        top: 2rem;
+        animation: float 2s infinite;
+    }
+
+    .leaf3 {
+        left: 2rem;
+        bottom: 1rem;
+        animation: float 2s infinite reverse;
+    }
+
+    .leaf4 {
+        bottom: 0rem;
+        right: 3rem;
+        animation: float 2s infinite;
+    }
+
+    .menu-container {
+        position: relative;
+    }
+
+    .backgrounds {
+        width: min-content;
+        position: absolute;
     }
 </style>
 <!-- css -->
@@ -67,19 +141,28 @@
                         </div>
                     </div>
                 @endforeach
+                <img class="img1" src="{{ asset('simpan/background1.png') }}" style="width: min-content"
+                    alt="">
             </div>
 
             <div class="container mt-5">
                 <div class="row">
-                    <div class="col-6">
-                        <img src="{{ asset('simpan/plate.png') }}" alt="">
+                    <div class="col-6 plate-container">
+                        <img class="plate" src="{{ asset('simpan/plate.png') }}" alt="">
+                        <img class="leafs leaf1" src="{{ asset('simpan/leaf1.png') }}" alt="">
+                        <img class="leafs leaf2" src="{{ asset('simpan/leaf2.png') }}" alt="">
+                        <img class="leafs leaf3" src="{{ asset('simpan/leaf3.png') }}" alt="">
+                        <img class="leafs leaf4" src="{{ asset('simpan/leaf4.png') }}" alt="">
                     </div>
-                    <div class="col-6 d-flex align-items-center">
+                    <div class="col-6 d-flex align-items-center menu-container">
                         <div class="d-flex flex-column">
                             <h1>Our Menu</h1>
                             <h4 class="mt-3">Indulge in a world of delightful flavors at our cafe, simply tap the menu
                                 button and let
                                 your taste buds journey through our tempting sections</h4>
+                            <img class="backgrounds" src="{{ asset('simpan/background2.png') }}" alt="">
+                            <img class="backgrounds" src="{{ asset('simpan/background3.png') }}" alt="">
+                            <img class="backgrounds"src="{{ asset('simpan/background4.png') }}" alt="">
                         </div>
                     </div>
                 </div>
