@@ -12,24 +12,37 @@
         font-family: "Frank Ruhl Libre", serif;
     }
 
-    .container-card-border {
-        height: 20rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: ease-out s;
+    .wrapper {
+        .container-card-border {
+            height: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: ease-out .5s;
+        }
 
         &:hover {
             .card-content {
                 transform: translateY(-4rem);
             }
 
-            height: 16rem;
+            .container-card-border {
+                height: 16rem;
+            }
+
+            .food-image {
+                filter: drop-shadow(0 0 0.75rem rgba(219, 115, 82, 0.75));
+            }
         }
+    }
+
+    .food-image {
+        transition: ease-out 1s;
     }
 
     .card-content {
         transition: ease-out 1s;
+        pointer-events: none;
     }
 
     .dish-container {
@@ -140,7 +153,7 @@
 
             <div class="row mt-3 dish-container">
                 @foreach ($fName as $index => $data)
-                    <div class="col-3">
+                    <div class="col-3 wrapper">
                         <div class="card card-width" style="border-radius: 4rem .5rem 4rem .5rem; position: relative;">
                             <div class="container-card-border">
                                 <div class="card-body card-content">

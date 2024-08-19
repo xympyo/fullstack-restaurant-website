@@ -29,7 +29,7 @@
     }
 
     .images {
-        transition: ease-out .25s;
+        transition: ease-out .45s;
     }
 </style>
 
@@ -48,7 +48,7 @@
                                 'id' => $ids[$index][$innerIndex],
                                 'name' => $fPhoto[$index][$innerIndex],
                             ]) }}">
-                            <div class="card-outline p-3 mt-4">
+                            <div class="card-outline p-3 mt-4" style="border-radius:2rem .6rem 2rem .6rem;">
                                 <img src="{{ asset('restaurant_menu/' . $fPhoto[$index][$innerIndex]) . '.png' }}"
                                     class="text-center img-fluid images" alt="{{ $fPhoto[$index][$innerIndex] }}">
                                 <div class="card-body .content">
