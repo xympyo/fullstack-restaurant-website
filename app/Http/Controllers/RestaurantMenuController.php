@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Menu;
 use App\Models\OrderStatus;
 use App\Models\Customer;
+use App\Models\DetailOrder;
 
 class RestaurantMenuController extends Controller
 {
@@ -79,22 +80,19 @@ class RestaurantMenuController extends Controller
         $finalQty = $request->input("final_qty");
         $menu = Menu::where('id', $ids)->firstOrFail();
 
+        $detail_order = new DetailOrder();
         $order = new Order();
-        $order->food_id = $ids;
+        $detail_order->food_id = $menu->id;
+        $detail_order->food_qty = $finalQty;
         $order->status_id = 1;
-        $status = OrderStatus::where("id", $order->status_id)->firstOrFail();
-        $order->cust_quantity = $finalQty;
         $order->customer_id = NULL;
-        $order->cust_name = NULL;
-        $order->customer_table = NULL;
-        $order->cust_food_name = $menu->f_name;
-        $order->cust_price = $menu->f_price;
-        $order->cust_total = $menu->f_price * $finalQty;
-        $order->cust_status = $status->order_status;
         $order->created_at = now();
         $order->deleted_at = NULL;
         $order->updated_at = NULL;
         $order->save();
+        $detail_order->order_id = $order->id;
+        dd($detail_order);
+        $detail_order->save();
 
         $maxId = DB::table('order')->max('id');
         $newAutoIncrement = $maxId + 1;

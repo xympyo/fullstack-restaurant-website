@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('detail_order', function (Blueprint $table) {
             $table->foreignId("order_id")->nullable()->index("fk_detail_order_to_order");
             $table->foreignId("food_id")->nullable()->index("fk_detail_order_to_menu");
+            $table->integer("food_qty");
         });
     }
 

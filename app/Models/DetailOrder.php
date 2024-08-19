@@ -11,11 +11,14 @@ class DetailOrder extends Model
     // use HasFactory;
     use SoftDeletes;
 
+    public $timestamps = false;
+
     public $table = "detail_order";
 
     protected $fillable = [
         "order_id",
         "food_id",
+        "food_qty",
     ];
 
     // one to one from detail_order to order
