@@ -89,28 +89,12 @@ class RestaurantMenuController extends Controller
         $order->created_at = now();
         $order->deleted_at = NULL;
         $order->updated_at = NULL;
+        // dd($detail_order);
         $order->save();
         $detail_order->order_id = $order->id;
-        dd($detail_order);
         $detail_order->save();
 
-        $maxId = DB::table('order')->max('id');
-        $newAutoIncrement = $maxId + 1;
-        DB::statement('ALTER TABLE `order` AUTO_INCREMENT = ' . $newAutoIncrement);
-
-        // Re-arrange IDs starting from 1
-        $idsToReArrange = Order::all()->pluck('id')->all();
-        sort($idsToReArrange);
-
-        $newId = 1;
-        foreach ($idsToReArrange as $id) {
-            if ($id != $newId) {
-                DB::table('order')->where('id', $id)->update(['id' => $newId]);
-            }
-            $newId++;
-        }
-
-        return redirect()->route('restaurant.cust', ['orderId' => $newId - 1]);
+        return redirect()->route('restaurant.cust', ['orderId' => $order->id]);
     }
 
     public function passCust($orderId)
