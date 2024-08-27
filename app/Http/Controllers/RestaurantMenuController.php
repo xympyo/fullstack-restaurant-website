@@ -16,6 +16,7 @@ class RestaurantMenuController extends Controller
     public function passMenu()
     {
         $category = DB::select('SELECT categories,id FROM `category`');
+        $counter = DB::table('detail_order')->sum('food_qty');
 
         $categories = [];
         $id = [];
@@ -56,7 +57,8 @@ class RestaurantMenuController extends Controller
             "fName" => $fName,
             "fDesc" => $fDesc,
             "fPrice" => $fPrice,
-            "fPhoto" => $fPhoto
+            "fPhoto" => $fPhoto,
+            "counter" => $counter
         ]);
     }
 
@@ -64,13 +66,30 @@ class RestaurantMenuController extends Controller
     {
         // dd('menuDetail called');
         $datas = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE id =?', [$id]);
+        $counter = DB::table('detail_order')->sum('food_qty');
 
         $price = number_format($datas[0]->f_price, 0, ',', '.');
 
         return view('Components.RestaurantMenu.menudetail', [
             "datas" => $datas,
-            "price" => $price
+            "price" => $price,
+            "counter" => $counter
         ]);
+    }
+
+    public function addOrder($id, Request $request)
+    {
+        $ids = $id;
+        $finalQty = $request->input("final_qty");
+        $menu = Menu::where('id', $ids)->firstOrFail();
+
+        $detail_order = new DetailOrder();
+        $detail_order->food_id = $menu->id;
+        $detail_order->food_qty = $finalQty;
+        $detail_order->order_id = NULL;
+        $detail_order->save();
+
+        return redirect()->route('restaurant');
     }
 
     public function custDetail($id, Request $request)

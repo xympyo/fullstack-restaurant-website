@@ -116,6 +116,7 @@
         </div>
     </div>
     @include('Components.LandingComponent.footer')
+    @include('Components.RestaurantMenu.foodbar')
 </body>
 
 <script>

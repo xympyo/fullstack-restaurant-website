@@ -17,7 +17,7 @@ Route::get("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "passC
 Route::post("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "postCust"])->name("restaurant.cust.post");
 // item pass and post
 Route::get("/menu/{id}/{name}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
-Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "custDetail"])->name("restaurant.item.pass");
+Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "addOrder"])->name("restaurant.item.pass");
 
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"])->name("dashboard");
