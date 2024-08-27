@@ -92,6 +92,32 @@ class RestaurantMenuController extends Controller
         return redirect()->route('restaurant');
     }
 
+    public function confirmOrder()
+    {
+        $detail_order = DB::select("SELECT `detail_order`.food_qty, `menu`.f_name, `menu`.f_price, `menu`.f_photo
+                                    FROM detail_order
+                                    JOIN `menu` ON `detail_order`.food_id = `menu`.id");
+
+        $fQty = [];
+        $fName = [];
+        $fPrice = [];
+        $fPhoto = [];
+
+        foreach ($detail_order as $yes) {
+            $fQty[] = $yes->food_qty;
+            $fName[] = $yes->f_name;
+            $fPrice[] = $yes->f_price;
+            $fPhoto[] = $yes->f_photo;
+        }
+
+        return view('Components.RestaurantMenu.confirmorder', [
+            "food_qty" => $fQty,
+            "food_name" => $fName,
+            "food_price" => $fPrice,
+            "food_photo" => $fPhoto,
+        ]);
+    }
+
     public function custDetail($id, Request $request)
     {
         // dd('custDetail called');
