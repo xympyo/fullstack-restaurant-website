@@ -47,7 +47,7 @@
 <body>
     <div class="container-fluid bar-container" id="bar-container">
         <div class="container content-container">
-            <a href="" class="hover">
+            <a href="{{ route('restaurant.confirm') }}" class="hover">
                 <h2>Items :</h2>
                 <div class="img-container">
                     <img class="img" src="{{ asset('Icons/Bag@2x.png') }}" alt="Bag Icon">

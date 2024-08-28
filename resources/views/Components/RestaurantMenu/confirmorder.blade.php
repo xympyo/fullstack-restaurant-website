@@ -73,7 +73,7 @@
                             <p>Biaya Makanan</p>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
-                            <h5>{{ $subtotal }}</h5>
+                            <h5>Rp. {{ $subtotal }}</h5>
                         </div>
                     </div>
                     <div>

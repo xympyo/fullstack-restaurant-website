@@ -147,6 +147,7 @@ class RestaurantMenuController extends Controller
             $totalFood[] = $yes->total_food;
             $subtotal += $yes->total_qty * $yes->f_price;
         }
+        $subtotal = formatRupiah($subtotal);
 
         return view('Components.RestaurantMenu.confirmorder', [
             "fQty" => $fQty,
