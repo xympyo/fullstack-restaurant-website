@@ -14,6 +14,7 @@ Route::get('/about', [LandingpageController::class, 'about'])->name("landing.abo
 Route::get("/menu", [RestaurantMenuController::class, 'passMenu'])->name("restaurant");
 // restaurant confirm order
 Route::get("/confirm_order", [RestaurantMenuController::class, 'confirmOrder'])->name("restaurant.confirm");
+Route::post('/update-order', [RestaurantMenuController::class, 'updateOrder']);
 // customer pass and post
 Route::get("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "passCust"])->name("restaurant.cust");
 Route::post("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "postCust"])->name("restaurant.cust.post");

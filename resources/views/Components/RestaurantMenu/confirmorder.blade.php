@@ -46,17 +46,20 @@
                             </div>
                             <div class="col-3">
                                 <div class="container d-flex flex-row align-items-center justify-content-center">
-                                    <a href="">
-                                        <img class="img-fluid" src="{{ asset('Icons/Add_ring.svg') }}" alt="Add Qty">
+                                    <a onclick="subItem({{ $fId[$index] }})">
+                                        <img class="img-fluid" src="{{ asset('Icons/Remove.svg') }}" alt="Add Qty">
                                     </a>
-                                    <h4>{{ $fQty[$index] }}</h4>
-                                    <a href="">
-                                        <img class="img-fluid" src="{{ asset('Icons/Remove.svg') }}" alt="Sub Qty">
+                                    <h4 class="ms-2 me-2" id="qty-{{ $fId[$index] }}">{{ $fQty[$index] }}</h4>
+                                    <a onclick="addItem({{ $fId[$index] }})">
+                                        <img class="img-fluid" src="{{ asset('Icons/Add_ring.svg') }}" alt="Sub Qty">
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <h3 class="fw-bold"><span>Rp. </span>{{ $fTot[$index] }}</h3>
+                            <div class="col-3 d-flex flex-row align-items-center">
+                                <h4>Rp. </h4>
+                                <h3 class="fw-bold" id="total-{{ $fId[$index] }}">{{ $fTot[$index] }}
+                                </h3>
+                                <h4>k</h4>
                             </div>
                         </div>
                     </div>
@@ -73,7 +76,7 @@
                             <p>Biaya Makanan</p>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
-                            <h5>Rp. {{ $subtotal }}</h5>
+                            <h5 id="subtotal">Rp. {{ $subtotal }} k</h5>
                         </div>
                     </div>
                     <div>
@@ -84,6 +87,49 @@
         </div>
     </div>
     @include('Components.LandingComponent.footer')
+
+    <script>
+        function addItem(id) {
+            var qtyElement = document.getElementById('qty-' + id);
+            var qty = parseInt(qtyElement.textContent);
+            qtyElement.textContent = qty + 1;
+
+            updateTotal(id, qty + 1);
+            getSingleItem(id, qty);
+        }
+
+        function subItem(id) {
+            var qtyElement = document.getElementById('qty-' + id);
+            var qty = parseInt(qtyElement.textContent);
+            if (qty > 1) {
+                qtyElement.textContent = qty - 1;
+            }
+
+            updateTotal(id, qty - 1);
+            getSingleItem(id, qty);
+        }
+
+        function getSingleItem(id, qty) {
+            var priceElement = document.getElementById('total-' + id);
+            var price = parseInt(priceElement.textContent);
+
+            var singleItem = price / qty;
+            console.log(singleItem);
+        }
+
+        function updateTotal(id, qty) {
+            var priceElement = document.getElementById('total-' + id);
+            var price = parseInt(priceElement.textContent);
+
+            var singleItem = price / qty;
+            var yes = singleItem * qty;
+
+            priceElement.textContent = yes;
+
+            console.log(singleItem * qty);
+            console.log(qty, price);
+        }
+    </script>
 </body>
 
 </html>
