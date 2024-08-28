@@ -94,27 +94,69 @@ class RestaurantMenuController extends Controller
 
     public function confirmOrder()
     {
-        $detail_order = DB::select("SELECT `detail_order`.food_qty, `menu`.f_name, `menu`.f_price, `menu`.f_photo
-                                    FROM detail_order
-                                    JOIN `menu` ON `detail_order`.food_id = `menu`.id");
+        $detail_order = DB::select("SELECT 
+                                        `detail_order`.food_id, 
+                                        `menu`.f_name, 
+                                        `menu`.f_price, 
+                                        `menu`.f_photo,
+                                        `menu`.f_category,
+                                        SUM(`detail_order`.food_qty) as total_qty,
+                                        (SELECT COUNT(DISTINCT `food_id`) FROM `detail_order`) as total_food
+                                    FROM 
+                                        `detail_order`
+                                    JOIN 
+                                        `menu` 
+                                    ON 
+                                        `detail_order`.food_id = `menu`.id
+                                    GROUP BY 
+                                        `detail_order`.food_id, 
+                                        `menu`.f_name, 
+                                        `menu`.f_price, 
+                                        `menu`.f_photo
+
+                                    ");
 
         $fQty = [];
         $fName = [];
         $fPrice = [];
         $fPhoto = [];
+        $fCat = [];
+        $fTotal = [];
+        $totalFood = [];
+        $subtotal = 0;
+
+        function formatRupiah($amount)
+        {
+            if ($amount >= 100000) {
+                return number_format($amount / 1000, 0, ',', '.') . 'k';
+            } elseif ($amount >= 10000) {
+                return number_format($amount / 1000, 1, ',', '.') . 'k';
+            } else {
+                return number_format($amount / 1000, 2, ',', '.') . 'k';
+            }
+        }
+
 
         foreach ($detail_order as $yes) {
-            $fQty[] = $yes->food_qty;
+            $fQty[] = $yes->total_qty;
             $fName[] = $yes->f_name;
             $fPrice[] = $yes->f_price;
             $fPhoto[] = $yes->f_photo;
+            $fCat[] = $yes->f_category;
+            $fTotal[] = formatRupiah($yes->total_qty * $yes->f_price);
+            $totalFood[] = $yes->total_food;
+            $subtotal += $yes->total_qty * $yes->f_price;
         }
 
         return view('Components.RestaurantMenu.confirmorder', [
-            "food_qty" => $fQty,
-            "food_name" => $fName,
-            "food_price" => $fPrice,
-            "food_photo" => $fPhoto,
+            "fQty" => $fQty,
+            "fName" => $fName,
+            "fPrice" => $fPrice,
+            "fPhoto" => $fPhoto,
+            "fCat" => $fCat,
+            "fTot" => $fTotal,
+            "totalFood" => $totalFood,
+            "subtotal" => $subtotal
         ]);
     }
 
