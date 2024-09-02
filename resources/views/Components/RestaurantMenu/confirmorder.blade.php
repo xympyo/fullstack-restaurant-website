@@ -158,6 +158,7 @@
                         </div>
                         <hr / class="mt-2">
                         <form action="" method="post">
+                            {{-- needs routing --}}
                             @csrf
                             @method('post')
                             @foreach ($fQty as $index => $yes)
