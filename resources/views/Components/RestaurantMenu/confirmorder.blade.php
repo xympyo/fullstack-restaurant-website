@@ -46,18 +46,18 @@
                             </div>
                             <div class="col-3">
                                 <div class="container d-flex flex-row align-items-center justify-content-center">
-                                    <a onclick="subItem({{ $fId[$index] }})">
+                                    <a onclick="subItem({{ $index }})" id="sub-{{ $index }}">
                                         <img class="img-fluid" src="{{ asset('Icons/Remove.svg') }}" alt="Add Qty">
                                     </a>
-                                    <h4 class="ms-2 me-2" id="qty-{{ $fId[$index] }}">{{ $fQty[$index] }}</h4>
-                                    <a onclick="addItem({{ $fId[$index] }})">
+                                    <h4 class="ms-2 me-2" id="qty-{{ $index }}">{{ $fQty[$index] }}</h4>
+                                    <a onclick="addItem({{ $index }})" style="pointer-events: auto">
                                         <img class="img-fluid" src="{{ asset('Icons/Add_ring.svg') }}" alt="Sub Qty">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-3 d-flex flex-row align-items-center">
                                 <h4>Rp. </h4>
-                                <h3 class="fw-bold" id="total-{{ $fId[$index] }}">{{ $fTot[$index] }}
+                                <h3 class="fw-bold" id="total-{{ $index }}">{{ $fTot[$index] }}
                                 </h3>
                                 <h4>k</h4>
                             </div>
@@ -89,46 +89,47 @@
     @include('Components.LandingComponent.footer')
 
     <script>
-        function addItem(id) {
-            var qtyElement = document.getElementById('qty-' + id);
+        function addItem(index) {
+            var qtyElement = document.getElementById('qty-' + index);
             var qty = parseInt(qtyElement.textContent);
             qtyElement.textContent = qty + 1;
 
-            updateTotal(id, qty + 1);
-            getSingleItem(id, qty);
+            updateTotal(index, qty + 1);
         }
 
-        function subItem(id) {
-            var qtyElement = document.getElementById('qty-' + id);
+        function subItem(index) {
+            var qtyElement = document.getElementById('qty-' + index);
+            var button = document.getElementById('sub-' + index);
             var qty = parseInt(qtyElement.textContent);
-            if (qty > 1) {
+            if (qty == 0) {
+                button.style.color = "gray";
+            } else {
                 qtyElement.textContent = qty - 1;
+                updateTotal(index, qty - 1);
             }
-
-            updateTotal(id, qty - 1);
-            getSingleItem(id, qty);
         }
 
-        function getSingleItem(id, qty) {
-            var priceElement = document.getElementById('total-' + id);
-            var price = parseInt(priceElement.textContent);
-
-            var singleItem = price / qty;
-            console.log(singleItem);
+        function formatRupiah(amount) {
+            if (amount >= 100000) {
+                return (amount / 1000).toFixed(0);
+            } else if (amount >= 10000) {
+                return (amount / 1000).toFixed(1);
+            } else {
+                return (amount / 1000).toFixed(2);
+            }
         }
 
-        function updateTotal(id, qty) {
-            var priceElement = document.getElementById('total-' + id);
-            var price = parseInt(priceElement.textContent);
+        function updateTotal(index, qty) {
+            var priceElement = document.getElementById('total-' + index);
+            var price = @json($fPrice);
+            console.log(price[index]);
 
-            var singleItem = price / qty;
-            var yes = singleItem * qty;
+            var yes = price[index] * qty;
 
-            priceElement.textContent = yes;
-
-            console.log(singleItem * qty);
-            console.log(qty, price);
+            priceElement.textContent = formatRupiah(yes);
         }
+
+        
     </script>
 </body>
 
