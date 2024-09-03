@@ -16,7 +16,9 @@ class RestaurantMenuController extends Controller
     public function passMenu()
     {
         $category = DB::select('SELECT categories,id FROM `category`');
-        $counter = DB::table('detail_order')->sum('food_qty');
+        $counter = DB::table('detail_order')
+            ->whereNull('order_id')
+            ->sum('food_qty');
 
         $categories = [];
         $id = [];
@@ -66,7 +68,9 @@ class RestaurantMenuController extends Controller
     {
         // dd('menuDetail called');
         $datas = DB::select('SELECT id,f_name, f_description, f_price, f_photo FROM `menu` WHERE id =?', [$id]);
-        $counter = DB::table('detail_order')->sum('food_qty');
+        $counter = DB::table('detail_order')
+            ->whereNull('order_id')
+            ->sum('food_qty');
 
         $price = number_format($datas[0]->f_price, 0, ',', '.');
 
@@ -101,19 +105,20 @@ class RestaurantMenuController extends Controller
                                         `menu`.f_photo,
                                         `menu`.f_category,
                                         SUM(`detail_order`.food_qty) as total_qty,
-                                        (SELECT COUNT(DISTINCT `food_id`) FROM `detail_order`) as total_food
+                                        (SELECT COUNT(DISTINCT `food_id`) FROM `detail_order` WHERE `detail_order`.order_id IS NULL) as total_food
                                     FROM 
                                         `detail_order`
                                     JOIN 
                                         `menu` 
                                     ON 
                                         `detail_order`.food_id = `menu`.id
+                                    WHERE 
+                                        `detail_order`.order_id IS NULL
                                     GROUP BY 
                                         `detail_order`.food_id, 
                                         `menu`.f_name, 
                                         `menu`.f_price, 
                                         `menu`.f_photo
-
                                     ");
 
         $fQty = [];
@@ -163,6 +168,52 @@ class RestaurantMenuController extends Controller
             "subtotal" => $subtotal
         ]);
     }
+
+    public function confirmOrderPost(Request $request)
+    {
+        $orders = DB::table('detail_order')
+            ->whereNull('order_id')
+            ->where('food_qty', '!=', 0)
+            ->get();
+
+        $finalId = [];
+        $finalQty = [];
+
+        foreach ($orders as $index => $yes) {
+            $finalId[] = $request->input("fId-" . $index);
+            $finalQty[] = $request->input("fQty-" . $index);
+        }
+
+        $order = new Order();
+        $order->status_id = 1;
+        $order->customer_id = null;
+        $order->created_at = now();
+        $order->updated_at = null;
+        $order->deleted_at = null;
+        $order->save();
+
+        $order_id = $order->id;
+
+        foreach ($orders as $index => $yes) {
+            if ($finalQty[$index] == 0) {
+                DB::table('detail_order')
+                    ->where('food_id', $yes->food_id)
+                    ->whereNull('order_id')
+                    ->delete();
+            } else {
+                DB::table('detail_order')
+                    ->where('food_id', $yes->food_id)
+                    ->whereNull('order_id')
+                    ->update([
+                        'food_id' => $finalId[$index],
+                        'food_qty' => $finalQty[$index],
+                        'order_id' => $order_id
+                    ]);
+            }
+        }
+    }
+
+
 
     public function custDetail($id, Request $request)
     {

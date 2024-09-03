@@ -23,6 +23,7 @@
             -moz-box-shadow: 0px 0.2rem 5px 0px rgba(0, 0, 0, 0.75);
             font-weight: 800;
             color: #DB7352;
+            border: 0;
         }
 
         .glass-css {
@@ -38,12 +39,10 @@
         }
 
         .confirmation-page {
-            position: absolute;
-            top: -34rem;
+            position: fixed;
+            z-index: 1000;
+            bottom: 16rem;
             display: none;
-            /* top: 120%;
-            left: 50%;
-            transform: translate(-50%, -90%); */
         }
     </style>
 </head>
@@ -67,11 +66,6 @@
                                     </div>
                                     <div class="row">
                                         <h5 class="fw-light">{{ $fCat[$index] }}</h5>
-                                    </div>
-                                    <div class="row">
-                                        <a href="">
-                                            <h6 style="text-decoration: underline">Delete</h6>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -157,17 +151,19 @@
                             </div>
                         </div>
                         <hr / class="mt-2">
-                        <form action="" method="post">
+                        <form action="{{ route('restaurant.confirm.post') }}" method="post" id="confirm_form">
                             {{-- needs routing --}}
                             @csrf
                             @method('post')
                             @foreach ($fQty as $index => $yes)
-                                <input type="hidden" name="fId" id="fId-{{ $index }}"
+                                <input type="hidden" name="fId-{{ $index }}" id="fId-{{ $index }}"
                                     value={{ $fId[$index] }}>
-                                <input type="hidden" name="fQty" id="fQty-{{ $index }}" value="">
+                                <input type="hidden" name="fQty-{{ $index }}" id="fQty-{{ $index }}"
+                                    value="">
                             @endforeach
                             <div class="d-flex justify-content-center">
-                                <a class="primary-btn" onclick="updateQty()">Confirm Order</a>
+                                <button type="submit" form="confirm_form" value="Submit" class="primary-btn"
+                                    onclick="updateQty()">Confirm Order</button>
                             </div>
                         </form>
                     </div>
