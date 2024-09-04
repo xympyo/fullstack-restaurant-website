@@ -16,8 +16,7 @@ Route::get("/menu", [RestaurantMenuController::class, 'passMenu'])->name("restau
 Route::get("/confirm_order", [RestaurantMenuController::class, 'confirmOrder'])->name("restaurant.confirm");
 Route::post('/update-order', [RestaurantMenuController::class, 'confirmOrderPost'])->name("restaurant.confirm.post");
 // customer pass and post
-Route::get("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "passCust"])->name("restaurant.cust");
-Route::post("/menu/cust-fill/{orderId}", [RestaurantMenuController::class, "postCust"])->name("restaurant.cust.post");
+Route::post("/menu/cust-fill/", [RestaurantMenuController::class, "postCust"])->name("restaurant.cust.post");
 // item pass and post
 Route::get("/menu/{id}/{name}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
 Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "addOrder"])->name("restaurant.item.pass");
