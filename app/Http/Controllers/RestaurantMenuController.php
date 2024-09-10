@@ -260,4 +260,9 @@ class RestaurantMenuController extends Controller
         $order->customer_id = $customer->id;
         $order->save();
     }
+
+    public function thankyou()
+    {
+        return view("Components.RestaurantMenu.thankyou");
+    }
 }

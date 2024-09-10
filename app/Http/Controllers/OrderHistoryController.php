@@ -10,41 +10,43 @@ class OrderHistoryController extends Controller
 {
     public function order_history()
     {
-        $customerDataCompleted = DB::select("SELECT 
-        `order`.id,
-        `order`.cust_name,
-        `customer`.customer_phone,
-        `order`.cust_food_name,
-        `order`.cust_quantity,
-        `order`.customer_table,
-        `order`.created_at,
-        `order`.cust_total
-    FROM 
-        `order`
-    JOIN  
-        `customer` ON `order`.customer_id = `customer`.id
-        WHERE `order`.status_id = 4
-    ");
+        $customerDataCompleted = DB::select("SELECT
+                                                `order`.id,
+                                                `customer`.customer_name,
+                                                `customer`.customer_phone,
+                                                `menu`.f_name,
+                                                `detail_order`.food_qty,
+                                                `menu`.f_price * `detail_order`.food_qty AS total_price,
+                                                `order`.created_at
+                                            FROM
+                                                `order`
+                                            JOIN 
+                                                `customer` ON `order`.customer_id = `customer`.id
+                                            JOIN 
+                                                `detail_order` ON `order`.id = `detail_order`.order_id
+                                            JOIN 
+                                                `menu` ON `detail_order`.food_id = `menu`.id
+                                            WHERE 
+                                                `order`.status_id = 4;
+                                            ");
         $custId = [];
         $custName = [];
         $custPhone = [];
         $custFood = [];
         $custQty = [];
-        $custTable = [];
         $custDate = [];
         $custTotal = [];
         $custTotalRupiah = [];
 
         foreach ($customerDataCompleted as $customers) {
             $custId[] = $customers->id;
-            $custName[] = $customers->cust_name;
+            $custName[] = $customers->customer_name;
             $custPhone[] = $customers->customer_phone;
-            $custFood[] = $customers->cust_food_name;
-            $custQty[] = $customers->cust_quantity;
-            $custTable[] = $customers->customer_table;
+            $custFood[] = $customers->f_name;
+            $custQty[] = $customers->food_qty;
             $custDate[] = $customers->created_at;
-            $custTotal[] = $customers->cust_total;
-            $custTotalRupiah[] = number_format($customers->cust_total, 0, ",", ".");
+            $custTotal[] = $customers->total_price;
+            $custTotalRupiah[] = number_format($customers->total_price, 0, ",", ".");
         }
 
         return view("orderhistory", [
@@ -53,7 +55,6 @@ class OrderHistoryController extends Controller
             "custPhone" => $custPhone,
             "custFood" => $custFood,
             "custQty" => $custQty,
-            "custTable" => $custTable,
             "custDate" => $custDate,
             "custTotalRupiah" => $custTotalRupiah
         ]);

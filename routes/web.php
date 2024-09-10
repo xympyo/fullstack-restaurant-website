@@ -20,6 +20,8 @@ Route::post("/menu/cust-fill/", [RestaurantMenuController::class, "postCust"])->
 // item pass and post
 Route::get("/menu/{id}/{name}", [RestaurantMenuController::class, 'menuDetail'])->name("restaurant.item");
 Route::post("/menu/cust/{ids}", [RestaurantMenuController::class, "addOrder"])->name("restaurant.item.pass");
+// thank you card
+Route::get("/menu/thankyou/", [RestaurantMenuController::class, "thankyou"])->name("restaurant.thankyou");
 
 
 Route::get("/dashboard", [App\Http\Controllers\OrderDoneController::class, "orderDone"])->name("dashboard");
