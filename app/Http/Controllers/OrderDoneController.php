@@ -39,15 +39,27 @@ class OrderDoneController extends Controller
         } else {
         }
 
-        $numberDoneToday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = CURDATE()');
-        $numberDoneYesterday = DB::select('SELECT COUNT(*) as count FROM `order` WHERE DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
-        $moneyGainedToday = DB::select('SELECT cust_total FROM `order` WHERE DATE(created_at) = CURDATE()');
+        $numberDoneToday = DB::select('SELECT COUNT(id) AS count
+                                        FROM `order`
+                                        WHERE DATE(`order`.created_at) = CURDATE();
+                                        ');
+        $numberDoneYesterday = DB::select('SELECT COUNT(id) AS count
+                                            FROM `order`
+                                            WHERE DATE(`order`.created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY);');
+        $moneyGainedToday = DB::select('SELECT 
+                                        `menu`.f_price, 
+                                        `detail_order`.food_qty,
+                                        (`menu`.f_price * `detail_order`.food_qty) AS total_price
+                                        FROM `order`
+                                        JOIN `detail_order` ON `order`.id = `detail_order`.order_id
+                                        JOIN `menu` ON `detail_order`.food_id = `menu`.id
+                                        WHERE DATE(`order`.created_at) = CURDATE();');
         $check = DB::select('SELECT * FROM `order`');
 
         // foreach money gained today
         $moneyTotalToday = 0;
         foreach ($moneyGainedToday as $moneys) {
-            $moneyTotalToday += $moneys->cust_total;
+            $moneyTotalToday += $moneys->total_price;
         }
         $rupiah = number_format($moneyTotalToday, 0, ",", ".");
 

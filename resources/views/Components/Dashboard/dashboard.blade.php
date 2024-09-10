@@ -9,7 +9,7 @@
         </div>
         <div id="container2" class="row d-flex flex-column cap-container mt-3">
             <section class="d-flex flex-row align-items-end">
-                <h1 id="numberYesterday"> {{$numberDoneYesterday}}</h1>
+                <h1 id="numberYesterday"> {{ $numberDoneYesterday }}</h1>
                 <h5 class="ms-3">Order's Done Yesterday</h5>
             </section>
             <p class="">{{ $averageYesterday }}% more than average</p>
@@ -17,18 +17,18 @@
     </div>
     <div class="col-2 d-flex flex-column justify-content-center align-items-center outline">
         @php
-        $orderQuantitiesPerDay
+            $orderQuantitiesPerDay;
         @endphp
         <h4 class="good-text">{{ $moneyTotalToday }}</h4>
         <h5>Today</h5>
     </div>
     <div class="col-3 d-flex flex-column justify-content-center align-items-center outline">
         @php
-        // Create a DateTime object for the current time
-        $dateTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+            // Create a DateTime object for the current time
+            $dateTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 
-        // Format the current time into Hours:Minutes format
-        $currentTime = $dateTime->format('H:i');
+            // Format the current time into Hours:Minutes format
+            $currentTime = $dateTime->format('H:i');
         @endphp
         <h1 class="good-text">{{ $currentTime }}</h1>
     </div>
