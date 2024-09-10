@@ -10,16 +10,16 @@ class LandingpageController extends Controller
     public function index()
     {
         $menu = DB::select("SELECT 
-    f_name, 
-    f_description,
-    f_photo,
-    f_category,
-    ROUND(f_price) AS formatted_price
-FROM 
-    `menu` 
-WHERE 
-    deleted_at IS NULL 
-LIMIT 4;");
+                                f_name, 
+                                f_description,
+                                f_photo,
+                                f_category,
+                                ROUND(f_price) AS formatted_price
+                            FROM 
+                                `menu` 
+                            WHERE 
+                                deleted_at IS NULL 
+                            LIMIT 4;");
 
         if (!$menu) {
             // Error handling: Handle the case when no data is retrieved from the database
