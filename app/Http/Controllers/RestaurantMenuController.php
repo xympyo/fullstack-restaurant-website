@@ -259,6 +259,8 @@ class RestaurantMenuController extends Controller
         $order = Order::orderBy("id", "desc")->first();
         $order->customer_id = $customer->id;
         $order->save();
+
+        return redirect()->route('restaurant.thankyou');
     }
 
     public function thankyou()
