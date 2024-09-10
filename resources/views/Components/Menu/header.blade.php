@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h3>Cepi Order</h3>
+        <h3 style="color: #95a1f9">Cepi Order</h3>
     </div>
     <div class="row">
         <div class="col-2"></div>
