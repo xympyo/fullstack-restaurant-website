@@ -211,6 +211,8 @@ class RestaurantMenuController extends Controller
                     ]);
             }
         }
+
+        return view("Components.RestaurantMenu.custdetail");
     }
 
 
@@ -246,22 +248,16 @@ class RestaurantMenuController extends Controller
         ]);
     }
 
-    public function postCust($orderId, Request $request)
+    public function postCust(Request $request)
     {
-        $orderIds = $orderId;
-        $custName = $request->input('cust_name');
-        $custPhone = $request->input('cust_phone_number');
         $customer = new Customer();
-        $customer->customer_name = $custName;
-        $customer->customer_phone = $custPhone;
+        $customer->customer_name = $request->input('cust_name');
+        $customer->customer_phone = $request->input('cust_phone_number');
         $customer->created_at = now();
         $customer->save();
 
-        $order = Order::where('id', $orderIds)->firstOrFail();
-        $customerId = $customer->id;
-        $order->customer_id = $customerId;
-        $order->cust_name = $custName;
-        $order->customer_table = NULL;
+        $order = Order::orderBy("id", "desc")->first();
+        $order->customer_id = $customer->id;
         $order->save();
     }
 }
