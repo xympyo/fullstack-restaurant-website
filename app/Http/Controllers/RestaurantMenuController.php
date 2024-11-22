@@ -120,7 +120,6 @@ class RestaurantMenuController extends Controller
                                         `menu`.f_price, 
                                         `menu`.f_photo
                                     ");
-
         $fQty = [];
         $fName = [];
         $fPrice = [];
@@ -130,7 +129,6 @@ class RestaurantMenuController extends Controller
         $totalFood = [];
         $fId = [];
         $subtotal = 0;
-
         function formatRupiah($amount)
         {
             if ($amount >= 100000) {
@@ -141,8 +139,6 @@ class RestaurantMenuController extends Controller
                 return number_format($amount / 1000, 2, ',', '.');
             }
         }
-
-
         foreach ($detail_order as $yes) {
             $fQty[] = $yes->total_qty;
             $fName[] = $yes->f_name;
@@ -154,8 +150,6 @@ class RestaurantMenuController extends Controller
             $totalFood[] = $yes->total_food;
             $subtotal += $yes->total_qty * $yes->f_price;
         }
-        $subtotal = formatRupiah($subtotal);
-
         return view('Components.RestaurantMenu.confirmorder', [
             "fQty" => $fQty,
             "fName" => $fName,
@@ -165,7 +159,7 @@ class RestaurantMenuController extends Controller
             "fCat" => $fCat,
             "fTot" => $fTotal,
             "totalFood" => $totalFood,
-            "subtotal" => $subtotal
+            "subtotal" => formatRupiah($subtotal)
         ]);
     }
 
